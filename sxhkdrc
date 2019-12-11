@@ -151,13 +151,13 @@ super + shift + {Left,Down,Up,Right}
 	euclid_mover {west,south,north,east}
 
 #resize windows
-super + ctrl + {a,s,w,d}
+super + alt + {a,s,w,d}
 	bspwm_resize.sh {west,south,north,east}
 
-super + ctrl + {h,j,k,l}
+super + alt + {h,j,k,l}
 	bspwm_resize.sh {west,south,north,east}
 	
-super + ctrl + {Left,Down,Up,Right}
+super + alt + {Left,Down,Up,Right}
 	bspwm_resize.sh {west,south,north,east}
 
 #
@@ -197,7 +197,7 @@ super + shift + {comma,period}
 super + g
 	bspc config -d focused window_gap {$gap,$(($gap+$gap)),$(($gap+$gap+$gap))}
 
-super + button{4,5}
+super + alt + button{4,5}
 	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 2 ))
 #
 # mouse bindings
@@ -261,11 +261,11 @@ ctrl + shift + q
 #
 
 # run applications
-super + space
+super + shift + space
 	dmenu_recent -fn 'xos4 Terminus:size=15' -i -l 14 -w 600 -y $PANEL_HEIGHT
 
-super + shift + space
-	#rofi -show
+super + space
+	rofi -show drun
 
 super + p
 	dmenu_recent -h $PANEL_HEIGHT -fn 'xos4 Terminus:size=15' -i
@@ -308,20 +308,20 @@ super
 # Media keys
 #
 
-XF86AudioRaiseVolume
-	volume up
+#XF86AudioRaiseVolume
+#	volume up
 
-XF86AudioLowerVolume
-	volume down
+#XF86AudioLowerVolume
+#	volume down
 
-XF86AudioMute
-	volume mute
+#XF86AudioMute
+#	volume mute
 	
-XF86MonBrightnessDown
- light -U 5 
+#XF86MonBrightnessDown
+# light -U 5 
 
-XF86MonBrightnessUp
- light -A 5
+#XF86MonBrightnessUp
+# light -A 5
  
 
 XF86Sleep
@@ -354,6 +354,6 @@ super + F7
 super + F8
 	amixer set Headphone toggle
 super + F9
-	amixer set Headphone 3- unmute
+	amixer set Headphone 5- unmute
 super + F10
-	amixer set Headphone 3+ unmute
+	amixer set Headphone 5+ unmute
