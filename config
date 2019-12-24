@@ -73,8 +73,8 @@ module-margin-left = 0
 module-margin-right = 0
 
 ;Make sure you have the fonts installed.
-font-0 = UbuntuMono Nerd Font:size=18;1
-font-1 = FontAwesome:pixelsize=22;1
+font-0 = xft:UbuntuMono Nerd Font:size=14;1
+;font-1 = FontAwesome:pixelsize=22;1
 
 modules-left = 
 modules-center = xbacklight 
@@ -168,7 +168,7 @@ label-focused-foreground = ${colors.BRAQ}
 label-focused-padding = 0
 
 label-occupied = "- "
-label-occupied-foreground = ${colors.DKRD}
+label-occupied-foreground = ${colors.DKOR}
 label-occupied-padding = 0
 
 label-urgent = "$ "
@@ -176,7 +176,7 @@ label-urgent-foreground = ${colors.BRRD}
 label-urgent-padding = 0
 
 label-empty = "_ "
-label-empty-foreground = ${colors.DKRD}
+label-empty-foreground = ${colors.DKOR}
 label-empty-padding = 0
 
 [module/xbacklight]

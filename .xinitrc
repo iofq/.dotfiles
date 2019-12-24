@@ -32,11 +32,11 @@ fi
 
 # start some nice programs
 autorandr --load lap
-setroot --zoom /home/pape
 xbacklight -set 30
 xmousepasteblock &
-sleep 1
-wal --theme base16-nord
+wal --theme gruvbox
+feh --bg-scale /home/pape
+redshift -l 43:-89 &
 sxhkd &
 
 

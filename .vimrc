@@ -103,3 +103,9 @@ map <leader>l :set list!<CR> " Toggle tabs and EOL
 set t_Co=256
 set background=dark
 colorscheme gruvbox
+
+
+" Open new split panes to right and bottom, which feels more natural than
+" Vim’s default:
+set splitbelow
+set splitright
