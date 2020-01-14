@@ -1,19 +1,23 @@
 " Don't try to be vi compatible
 set nocompatible
 
-" Mouse in all modes
-set mouse=a
+" Mouse in visual modes
+set mouse=v
 
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
+" Installs vim-plugged if it is not
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " TODO: Load plugins here (pathogen or vundle)
 call plug#begin('~/.vim/plugged')
 
-Plug 'morhetz/gruvbox'
-Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
-
 
 call plug#end()
 
@@ -59,6 +63,13 @@ set matchpairs+=<:> " use % to jump between pairs
 nnoremap j gj
 nnoremap k gk
 
+" kj to esc
+inoremap kj <Esc>
+" ZZ to :w, ZX to :wq
+noremap ZZ :w<CR>
+noremap ZX :wq<CR>
+
+
 " Allow hidden buffers
 set hidden
 
@@ -66,7 +77,7 @@ set hidden
 set ttyfast
 
 " Status bar
-set laststatus=2
+set laststatus=1
 
 " Last line
 set showmode
@@ -82,13 +93,6 @@ set smartcase
 set showmatch
 map <leader><space> :let @/=''<cr> " clear search
 
-" Remap help key.
-inoremap <F1> <ESC>:set invfullscreen<CR>a
-nnoremap <F1> :set invfullscreen<CR>
-vnoremap <F1> :set invfullscreen<CR>
-
-" Textmate holdouts
-
 " Formatting
 map <leader>q gqip
 
@@ -102,7 +106,6 @@ map <leader>l :set list!<CR> " Toggle tabs and EOL
 " Color scheme (terminal)
 set t_Co=256
 set background=dark
-colorscheme gruvbox
 
 
 " Open new split panes to right and bottom, which feels more natural than
