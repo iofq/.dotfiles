@@ -44,6 +44,7 @@ DKOR =${xrdb:color11:#222}
 ;now im just making shit up
 BROR =${xrdb:color7:#222}
 DKGN =${xrdb:color4:#222}
+BRBR =${xrdb:color8:#222}
 
 
 [bar/brightness]
@@ -73,8 +74,8 @@ module-margin-left = 0
 module-margin-right = 0
 
 ;Make sure you have the fonts installed.
-font-0 = xft:UbuntuMono Nerd Font:size=14;1
-;font-1 = FontAwesome:pixelsize=22;1
+font-0 = "UbuntuMono Nerd Font:size=14;1"
+font-1 = "FontAwesome:pixelsize=22;1"
 
 modules-left = 
 modules-center = xbacklight 
@@ -111,7 +112,8 @@ radius = 0
 fixed-center = true
 
 background = ${colors.BKGD}
-foreground = ${colors.FRGD}
+#foreground is light grey
+foreground = ${colors.BRBR}
 
 line-size = 3
 line-color = #f00
@@ -119,14 +121,15 @@ line-color = #f00
 border-size = 0
 border-color = #FFFFFFFF
 
+#real font declaration here
+font-0 = "DroidSansMono Nerd Font:size=10;1"
+font-1 = "FontAwesome:pixelsize=22;1"
+
 padding-left = 0
 padding-right = 0
 
 module-margin-left = 0
 module-margin-right = 0
-
-font-0 = xos4 Terminus:pixelsize=16;1
-font-1 = FontAwesome:pixelsize=16;1
 
 modules-left = bspwm
 modules-center = xwindow
@@ -149,12 +152,12 @@ override-redirect = true
 ;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
-cursor-scroll = ns-resize
+;cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:50:...%
-label-foreground = ${colors.BRBL}
+label-foreground = ${colors.BRBR}
 
 [module/bspwm]
 type = internal/bspwm
@@ -164,11 +167,11 @@ format-suffix = " "
 ;format-suffix-underline = ${colors.BRAQ}
 ;format-underline = ${colors.BRAQ}
 label-focused = "[-] "
-label-focused-foreground = ${colors.BRAQ}
+label-focused-foreground = ${colors.DKRD}
 label-focused-padding = 0
 
 label-occupied = "- "
-label-occupied-foreground = ${colors.DKOR}
+label-occupied-foreground = ${colors.BRBR}
 label-occupied-padding = 0
 
 label-urgent = "$ "
@@ -176,7 +179,7 @@ label-urgent-foreground = ${colors.BRRD}
 label-urgent-padding = 0
 
 label-empty = "_ "
-label-empty-foreground = ${colors.DKOR}
+label-empty-foreground = ${colors.BRBR}
 label-empty-padding = 0
 
 [module/xbacklight]
@@ -188,12 +191,12 @@ format = <bar>
 bar-width = 10
 bar-indicator = |
 bar-indicator-foreground = #ff
-bar-indicator-font = 2
+bar-indicator-font = 1
 bar-fill = ─
-bar-fill-font = 2
+bar-fill-font = 1
 bar-fill-foreground = #9f78e1
 bar-empty = ─
-bar-empty-font = 2
+bar-empty-font = 1
 bar-empty-foreground = ${colors.FRGD}
 
 [module/backlight-acpi]
@@ -206,7 +209,8 @@ type = internal/cpu
 interval = 2
 format-prefix = " cpu:"
 format-suffix = " "
-format-underline = ${colors.DKRD}
+format-underline = ${colors.BRRD}
+format-foreground = ${colors.BRRD}
 label = %percentage:4:4%%
 
 #[module/freq]
@@ -214,12 +218,14 @@ label = %percentage:4:4%%
 #exec = mhz
 #interval = 9 
 #format-underline = ${colors.DKGN}
+
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " ram:"
 format-suffix = " "
 format-underline = ${colors.DKOR}
+format-foreground = ${colors.DKOR}
 label = %percentage_used:4:4%%
 
 ;[module/wlan]
@@ -254,7 +260,8 @@ time-alt = %I:%M:%S
 format-prefix = 
 format-prefix-background = ${colors.DKAQ}
 format-prefix-foreground = ${colors.BKGD}
-format-underline = ${colors.DKAQ}
+format-underline = ${colors.DKGR}
+format-foreground = ${colors.DKGR}
 
 label = "%date% %time% "
 
@@ -285,10 +292,12 @@ full-at = 100
 
 format-charging = "<label-charging>  "
 format-charging-underline = ${colors.BRGR}
+format-charging-foreground = ${colors.BRGR}
 label-charging = " +%percentage%%"
 
 format-discharging = "<label-discharging>  "
 format-discharging-underline = ${colors.BRGR}
+format-discharging-foreground = ${colors.BRGR]
 label-discharging = " %percentage%%"
 
 format-full-prefix = 
@@ -300,32 +309,6 @@ format-full-foreground = ${colors.BRGR}
 label-full = " %percentage%%"
 label-alt=
 
-
-ramp-capacity-0 = "  "
-ramp-capacity-1 = "  "
-ramp-capacity-2 = "  "
-ramp-capacity-3 = "  "
-ramp-capacity-4 = "  "
-ramp-capacity-0-background = ${colors.DKRD}
-ramp-capacity-0-foreground = ${colors.BKGD}
-ramp-capacity-1-background = ${colors.BRYL}
-ramp-capacity-1-foreground = ${colors.BKGD}
-ramp-capacity-2-background = ${colors.BRYL}
-ramp-capacity-2-foreground = ${colors.BKGD}
-ramp-capacity-3-background = ${colors.BRYL}
-ramp-capacity-3-foreground = ${colors.BKGD}
-ramp-capacity-4-background = ${colors.BRGR}
-ramp-capacity-4-foreground = ${colors.BKGD}
-
-animation-charging-0 = "+"
-animation-charging-1 = "."
-animation-charging-2 = "+"
-animation-charging-3 = "."
-animation-charging-4 = "+"
-animation-charging-background = ${colors.DKGR}
-animation-charging-foreground = ${colors.BKGD}
-animation-charging-framerate = 750
-
 [module/temperature]
 type = internal/temperature
 thermal-zone = 7
@@ -333,6 +316,7 @@ warn-temperature = 60
 
 format = <label>
 format-underline = ${colors.BRBL}
+format-foreground = ${colors.BRBL}
 format-warn =<label-warn>
 format-warn-underline = ${self.format-underline}
 
@@ -370,17 +354,17 @@ menu-0-2-exec = menu-open-3
 menu-1-0 = cancel
 menu-1-0-exec = menu-open-0
 menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+menu-1-1-exec = reboot
 
 menu-2-0 = power off
-menu-2-0-exec = sudo shutdown now
+menu-2-0-exec = shutdown now
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
 menu-3-0 = powersave
-menu-3-0-exec = sudo cpupower frequency-set -g powersave
+menu-3-0-exec = cpupower frequency-set -g powersave
 menu-3-1 = performance
-menu-3-1-exec = sudo cpupower frequency-set -g performance
+menu-3-1-exec = cpupower frequency-set -g performance
 
 [settings]
 screenchange-reload = true

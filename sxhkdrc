@@ -197,8 +197,12 @@ super + shift + {comma,period}
 super + g
 	bspc config -d focused window_gap {$gap,$(($gap+$gap)),$(($gap+$gap+$gap))}
 
-super + alt + button{4,5}
+super + alt + button{5,4}
 	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 2 ))
+
+#Reset window gap
+super + alt + button2
+    bspc config -d focused window_gap -1
 #
 # mouse bindings
 # __________________
@@ -206,8 +210,8 @@ super + alt + button{4,5}
 ~button1
 	DidIClickDesktop.sh && gapgrab	
 
-~button2
-	DidIClickDesktop.sh && BspwmDesktopMenu
+#~button2
+#	DidIClickDesktop.sh && BspwmDesktopMenu
 #	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmDesktopMenui
 #	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
 		
@@ -239,7 +243,7 @@ mod5 + @button1
 
 # Spawn window manipulation menu
 # Mod1 is alt
-mod5 + @button2
+#mod1 + @button2
 	BspwmWindowMenu
 # mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
 
@@ -271,9 +275,10 @@ super + p
 	dmenu_recent -h $PANEL_HEIGHT -fn 'xos4 Terminus:size=15' -i
 
 super + Return
-	st
+    st 
 super + z
-	st
+	st -e tmux
+
 
 super + shift + z
 	open-terminal-here
@@ -333,15 +338,7 @@ super + shift + Escape
 
 # In case bspwmrc fails to execute/you wish have plugged in a new monitor
 super + shift + r
-	bspwmrc
-#edit this file
-alt + ctrl + space
-	$GUI_EDITOR ~/.config/sxhkd/sxhkdrc
-# Toggle compositing
-super + ctrl + space
-	{pkill compton ,\
-	st -c scratchpad -e ~/.bin/scratch &
-	compton -b }
+	./bspwmrc
 
 # Remove receptacles
 super + BackSpace
@@ -352,8 +349,8 @@ super + F6
 super + F7
     xbacklight -inc 10
 super + F8
-	amixer set Headphone toggle
+	amixer -c 0 set Headphone toggle
 super + F9
-	amixer set Headphone 5- unmute
+	amixer -c 0 set Headphone 5- unmute
 super + F10
-	amixer set Headphone 5+ unmute
+	amixer -c 0 set Headphone 5+ unmute
