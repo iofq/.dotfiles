@@ -15,6 +15,11 @@ super + F1
 super + x
 	bspc node -c
 
+super + y
+    stack_windows
+super + shift + y
+    pkill -f stack_windows && bspc node @/ -E
+
 # Kill window, note kill window kills all instances
 super + shift + x
 	bspc node -k                         
