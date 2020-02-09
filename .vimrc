@@ -16,9 +16,9 @@ endif
 
 " TODO: Load plugins here (pathogen or vundle)
 call plug#begin('~/.vim/plugged')
-
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
-
+Plug 'kien/ctrlp.vim'
 call plug#end()
 
 " Turn on syntax highlighting
@@ -26,6 +26,8 @@ syntax on
 
 " For plugins to load correctly
 filetype plugin indent on
+
+map <C-n> :NERDTreeToggle<CR>
 
 " Security
 set modelines=0
@@ -106,6 +108,12 @@ map <leader>l :set list!<CR> " Toggle tabs and EOL
 " Color scheme (terminal)
 set t_Co=256
 set background=dark
+highlight TabLineFill ctermfg=Black ctermbg=Black
+highlight TabLine ctermfg=8 ctermbg=0 cterm=NONE
+highlight TabLineSel ctermfg=7 ctermbg=0 cterm=bold,underline
+highlight StatusLine ctermfg=1 ctermbg=0 cterm=bold,underline
+highlight StatusLineNC ctermfg=8 ctermbg=0 cterm=underline
+highlight VertSplit ctermfg=1 ctermbg=0 cterm=none
 
 
 " Open new split panes to right and bottom, which feels more natural than
