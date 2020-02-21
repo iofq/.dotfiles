@@ -1,6 +1,3 @@
-" Don't try to be vi compatible
-set nocompatible
-
 " Mouse in visual modes
 set mouse=v
 
@@ -16,29 +13,73 @@ endif
 
 " TODO: Load plugins here (pathogen or vundle)
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-surround'
-Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-surround' "ysaw( or ys3aw( cs(' ds' 
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " tab completion
+Plug 'junegunn/fzf' "fuzzy file finder, like ctrl-p. use :FZF
+Plug 'Yggdroot/indentLine' " display indents (for yaml) :IndentLineToggle
 call plug#end()
-
-" Turn on syntax highlighting
-syntax on
 
 " For plugins to load correctly
 filetype plugin indent on
 
-map <C-n> :NERDTreeToggle<CR>
+"PLUGIN BINDINGS
+" Use s-<tab> for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <C-n>
+      \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<C-n>" :
+                  \ coc#refresh()
+                  inoremap <expr><C-n> pumvisible() ? "\<C-p>" : "\<C-m>"
 
-" Security
-set modelines=0
+function! s:check_back_space() abort
+      let col = col('.') - 1
+    endfunction
+
+"END PLUGIN BINDINGS
+"OTHER PLUGIN SETTINGS
+"indentLine setting You can also use one of ¦, ┆, │, ⎸, or ▏
+let g:indentLine_char = '⎸'
+"KEYBINDS
+"set paste, nopaste F2
+set pastetoggle=<F2>
+
+" jj to esc, no movement
+inoremap jj <Esc>
+vnoremap jj <Esc>
+" Ctrl-L in insert mode to move to end line
+inoremap <C-l> <C-o>$
+nnoremap <C-l> $
+" Ctrl-H in insert mode to move to beginning
+inoremap <C-h> <C-o>0
+nnoremap <C-h> 0
+"ZZ to :w, ZX to :wq
+noremap ZZ :w<CR>
+noremap ZX :wq<CR>
+
+" vanilla vim autopairs
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap {<CR> {<CR>}<ESC>O
+
+" vim-surround bindings
+:nnoremap <Leader>s" ciw""<Esc>P
+:nnoremap <Leader>s' ciw''<Esc>P
+:nnoremap <Leader>s[ ciw[]<Esc>P
+:nnoremap <Leader>s( ciw()<Esc>P
+:nnoremap <Leader>sd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
+
+"END KEYBINDS
 
 " Show line numbers
 set number
+" cursorline
+set cursorline
 
 " Show file stats
 set ruler
+" Turn on syntax highlighting
+syntax on
 
-" Blink cursor on error instead of beeping (grr)
+" Blink cursor on error instead of beeping
 set visualbell
 set t_vb=
 
@@ -50,9 +91,9 @@ set wrap
 set textwidth=0
 set wrapmargin=0
 set formatoptions=tcqrn1
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set noshiftround
 
@@ -60,18 +101,6 @@ set noshiftround
 set scrolloff=3
 set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
-
-" Move up/down editor lines
-nnoremap j gj
-nnoremap k gk
-
-" kj to esc
-inoremap kj <Esc>
-" ZZ to :w, ZX to :wq
-noremap ZZ :w<CR>
-noremap ZX :wq<CR>
-
-
 " Allow hidden buffers
 set hidden
 
@@ -86,37 +115,30 @@ set showmode
 set showcmd
 
 " Searching
-nnoremap / /\v
-vnoremap / /\v
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 set showmatch
-map <leader><space> :let @/=''<cr> " clear search
-
-" Formatting
-map <leader>q gqip
-
-" Visualize tabs and newlines
-set listchars=tab:▸\ ,eol:¬
-" Uncomment this to enable by default:
-" set list " To enable by default
-" Or use your leader key + l to toggle on/off
-map <leader>l :set list!<CR> " Toggle tabs and EOL
 
 " Color scheme (terminal)
 set t_Co=256
 set background=dark
-highlight TabLineFill ctermfg=Black ctermbg=Black
-highlight TabLine ctermfg=8 ctermbg=0 cterm=NONE
-highlight TabLineSel ctermfg=7 ctermbg=0 cterm=bold,underline
+highlight TabLineFill ctermfg=Black ctermbg=NONE cterm=bold
+highlight Linenr ctermfg=8
+highlight TabLine ctermfg=8 ctermbg=NONE cterm=NONE
+highlight TabLineSel ctermfg=7 ctermbg=NONE cterm=bold,underline
 highlight StatusLine ctermfg=1 ctermbg=0 cterm=bold,underline
 highlight StatusLineNC ctermfg=8 ctermbg=0 cterm=underline
 highlight VertSplit ctermfg=1 ctermbg=0 cterm=none
+highlight MatchParen ctermbg=magenta ctermfg=Black
+
+highlight CocErrorFloat ctermfg=232 ctermbg=1 cterm=none "232 is black-ish
+highlight Pmenu ctermbg=7 ctermfg=none cterm=none
+highlight PmenuSel ctermbg=3 ctermfg=0 
 
 
-" Open new split panes to right and bottom, which feels more natural than
-" Vim’s default:
+
+" Open new split panes to right and bottom
 set splitbelow
 set splitright
