@@ -1,0 +1,25 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean: ['~']
+
+- link:
+    ~/.dotfiles: ''
+    ~/.tmux.conf: .tmux.conf
+    ~/.vimrc: .vimrc
+    ~/.bashrc: .bashrc
+    ~/.xinitrc: .xinitc
+    ~/.zshrc: .zshrc
+    ~/.ssh: .ssh
+    ~/.config:
+      relink: true
+      path: .config/*
+    
+
+- create:
+    - ~/.config
+
+- shell:
+  - [git submodule update --init --recursive, updating submodules]
