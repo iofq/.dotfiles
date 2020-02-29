@@ -5,7 +5,6 @@
       force: true
 
 - link:
-    ~/.dotfiles: ''
     ~/.tmux.conf: 
       path: .tmux.conf
     ~/.vimrc: 
