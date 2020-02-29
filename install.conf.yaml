@@ -4,8 +4,6 @@
       create: true
       force: true
 
-- clean: ['~']
-
 - link:
     ~/.dotfiles: ''
     ~/.tmux.conf: 
