@@ -2,20 +2,23 @@
     link:
       relink: true
       create: true
+      force: true
 
 - clean: ['~']
 
 - link:
     ~/.dotfiles: ''
-    ~/.tmux.conf: .tmux.conf
-    ~/.vimrc: .vimrc
-    ~/.bashrc: .bashrc
-    ~/.xinitrc: .xinitc
+    ~/.tmux.conf: 
+      path: .tmux.conf
+    ~/.vimrc: 
+      path: .vimrc
+    ~/.bashrc: 
+      path: .bashrc
+    ~/.xinitrc: .xinitrc
     ~/.zshrc: .zshrc
     ~/.ssh: .ssh
     ~/.config:
-      relink: true
-      path: .config/*
+      path: .config/
     
 
 - create:
