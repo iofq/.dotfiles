@@ -20,4 +20,5 @@ USER e
 RUN cd && git clone https://github.com/iofq/.dotfiles && cd .dotfiles && ./install
 
 EXPOSE 22
-CMD ["zsh"] 
+ENV args="-c tmux"
+ENTRYPOINT exec zsh $args
