@@ -1,7 +1,7 @@
  .dotfiles
 ======
-personal dotfiles for bspwm, managed with Dotbot.
----
+### personal dotfiles for bspwm, managed with Dotbot.
+
 
 #### installing:
 
