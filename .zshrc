@@ -60,7 +60,7 @@ if which exa 2>&1 >/dev/null; then
   alias ls='exa'
 fi
 alias free='free -m'                                            # Show sizes in MB
-alias gitu='git add . && git commit -m '' && git push'
+alias gitu='git add . && git commit -m "n/a" && git push'
 alias rice="cd /home/code"
 
 # Theming section  
