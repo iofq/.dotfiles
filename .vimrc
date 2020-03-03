@@ -125,7 +125,8 @@ set showmatch
 set t_Co=256
 set background=dark
 highlight TabLineFill ctermfg=Black ctermbg=NONE cterm=bold
-highlight Linenr ctermfg=8
+highlight Linenr ctermfg=8 ctermbg=NONE
+highlight CursorLineNR ctermfg=2 ctermbg=NONE
 highlight TabLine ctermfg=8 ctermbg=NONE cterm=NONE
 highlight TabLineSel ctermfg=7 ctermbg=NONE cterm=bold,underline
 highlight StatusLine ctermfg=1 ctermbg=0 cterm=bold,underline
@@ -133,10 +134,9 @@ highlight StatusLineNC ctermfg=8 ctermbg=0 cterm=underline
 highlight VertSplit ctermfg=1 ctermbg=0 cterm=none
 highlight MatchParen ctermbg=magenta ctermfg=Black
 
-highlight CocErrorFloat ctermfg=232 ctermbg=1 cterm=none "232 is black-ish
-highlight Pmenu ctermbg=7 ctermfg=none cterm=none
+highlight CocErrorFloat ctermbg=1 ctermfg=0 cterm=none "232 is black-ish
+highlight Pmenu ctermbg=7 ctermfg=0 cterm=none
 highlight PmenuSel ctermbg=3 ctermfg=0 
-
 
 
 " Open new split panes to right and bottom
