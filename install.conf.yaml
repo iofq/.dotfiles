@@ -21,6 +21,8 @@
 
 - create:
     - ~/.config
+- clean:
+    - ~/.zsh/plugins 
 
 - shell:
   - [git submodule update --init --recursive, updating submodules]

@@ -26,8 +26,7 @@ fi
 autorandr --load lap
 xbacklight -set 30
 xmousepasteblock &
-wal --theme gruvbox
-feh --bg-scale /home/pape
+flatwal base16-material-palenight
 redshift -l 43:-89 &
 sxhkd &
 

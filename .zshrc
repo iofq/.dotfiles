@@ -56,7 +56,9 @@ alias cp="cp -i"                                                # Confirm before
 alias la='ls -lah'
 alias cdd='cd ..'
 alias df='df -h'                                               # Human-readable sizes
-alias ls='exa'
+if [[$(command -v exa)]]; then
+  alias ls='exa'
+fi
 alias free='free -m'                                            # Show sizes in MB
 alias gitu='git add . && git commit -m '' && git push'
 alias rice="cd /home/code"
