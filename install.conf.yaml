@@ -2,7 +2,6 @@
     link:
       relink: true
       create: true
-      force: true
 
 - link:
     ~/.tmux.conf: 
@@ -17,9 +16,6 @@
     ~/.config:
       path: .config/
     
-
-- create:
-    - ~/.config
 
 - clean: [~/.zsh/plugins]
 
