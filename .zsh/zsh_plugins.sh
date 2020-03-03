@@ -1,5 +1,7 @@
 #!/bin/bash
 #install zsh plugins 
+#deletes ~/.zsh/plugins
+rm -rf ~/.zsh/plugins && \
 mkdir -p ~/.zsh/plugins && \
 cd ~/.zsh/plugins
 
