@@ -6,7 +6,7 @@ RUN pacman --noconfirm -Syu && \
   gcc tmux openssh exa
 
 #development
-RUN pacman --noconfirm -Syu nodejs npm python python-pip rust 
+RUN pacman --noconfirm -Syu nodejs npm python python-pip rust cdrkit
 
 # User setup
 RUN useradd -m e && \

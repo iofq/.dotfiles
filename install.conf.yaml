@@ -10,15 +10,13 @@
       path: .vimrc
     ~/.bashrc: 
       path: .bashrc
+      force: true
     ~/.xinitrc: .xinitrc
     ~/.zshrc: .zshrc
     ~/.zsh: .zsh/
     ~/.config:
       path: .config/
     
-
-- clean: [~/.zsh/plugins]
-
 - shell:
   - [git submodule update --init --recursive, updating submodules]
   - [sh ~/.zsh/zsh_plugins.sh, installing zsh plugins in ~/.zsh/plugins]
