@@ -274,7 +274,7 @@ super + shift + space
 	dmenu_recent -fn 'xos4 Terminus:size=15' -i -l 14 -w 600 -y $PANEL_HEIGHT
 
 super + space
-	rofi -show drun
+	dmenu_run
 
 super + p
 	dmenu_recent -h $PANEL_HEIGHT -fn 'xos4 Terminus:size=15' -i
