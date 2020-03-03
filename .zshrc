@@ -56,7 +56,7 @@ alias cp="cp -i"                                                # Confirm before
 alias la='ls -lah'
 alias cdd='cd ..'
 alias df='df -h'                                               # Human-readable sizes
-if [[$(command -v exa)]]; then
+if which exa 2>&1 >/dev/null; then
   alias ls='exa'
 fi
 alias free='free -m'                                            # Show sizes in MB
