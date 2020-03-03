@@ -13,7 +13,6 @@
       path: .bashrc
     ~/.xinitrc: .xinitrc
     ~/.zshrc: .zshrc
-    ~/.ssh: .ssh/
     ~/.zsh: .zsh/
     ~/.config:
       path: .config/
