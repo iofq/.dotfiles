@@ -1,3 +1,7 @@
+#set vi editing mode and disable terminal flow control (Ctrl-S)
+set -o vi
+stty -ixon
+
 ## Options section
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
