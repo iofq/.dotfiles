@@ -24,9 +24,10 @@ fi
 
 #userland
 autorandr --load lap
-xbacklight -set 30
+xbacklight -set 80
 xmousepasteblock &
 flatwal base16-material-palenight
+picom &
 redshift -l 43:-89 &
 sxhkd &
 
