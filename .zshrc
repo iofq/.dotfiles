@@ -1,5 +1,5 @@
 #set vi editing mode and disable terminal flow control (Ctrl-S)
-set -o vi
+bindkey -v
 stty -ixon
 
 ## Options section
