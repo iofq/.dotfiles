@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-gap=1
+gap=2
 panel=26
 export gap
 export panel
