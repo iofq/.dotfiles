@@ -15,3 +15,4 @@ git clone https://github.com/iofq/.dotfiles && docker build .dotfiles -t iofq
 docker run --rm -it iofq
 ```
 
+![Screenshot]
