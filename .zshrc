@@ -78,7 +78,7 @@ setopt prompt_subst
 # Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
 #PROMPT="%(!.%{$fg[red]%}[%n@%m %1~]%{$reset_color%}# .%{$fg[white]%}[%n@%m %1~]%{$reset_color%}$ "
 # Maia prompt
-PROMPT="%b%{$fg[green]%}[%(4~|%-1~/.../%2~|%~)]%u%b%{$reset_color%}$ "
+PROMPT="%b%{$fg[magenta]%}[%(4~|%-1~/.../%2~|%~)]%u%b%{$reset_color%}$ "
 # Right prompt with exit status of previous command if not successful
  RPROMPT="%{$fg[red]%} %(?..[%?])" 
 
