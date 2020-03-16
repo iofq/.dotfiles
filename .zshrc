@@ -56,7 +56,7 @@ bindkey '^H' backward-kill-word                                 # delete previou
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
 ## Alias section 
-alias cp="cp -i"                                                # Confirm before overwriting something
+alias cp="rsync -avh --progress"
 alias la='ls -lah'
 alias cdd='cd ..'
 alias df='df -h'                                               # Human-readable sizes
