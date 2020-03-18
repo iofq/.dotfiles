@@ -11,6 +11,9 @@
     ~/.bashrc: 
       path: .bashrc
       force: true
+    ~/.bash_profile: 
+      path: .bash_profile
+      force: true
     ~/.xinitrc: .xinitrc
     ~/.zshrc: .zshrc
     ~/.zsh: .zsh/
