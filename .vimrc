@@ -30,7 +30,7 @@ function! s:check_back_space() abort
       let col = col('.') - 1
     endfunction 
 
-nnoremap <C-p> :FZF!<cr> " Ctrl-P
+nnoremap <C-p> :FZF! ../ <cr> " Ctrl-P
 "END PLUGIN BINDINGS
 "
 "OTHER PLUGIN SETTINGS
