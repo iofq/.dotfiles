@@ -15,6 +15,7 @@
       path: .bash_profile
       force: true
     ~/.xinitrc: .xinitrc
+    ~/.Xresources: .Xresources
     ~/.zshrc: .zshrc
     ~/.zsh: .zsh/
     ~/.config:
