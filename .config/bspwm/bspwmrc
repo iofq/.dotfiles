@@ -38,7 +38,7 @@ bspc config swallow_first_click true
 #Settings for manual splitting
 bspc config split_ratio         0.50
 
-bspc monitor eDP1 -d i ii iii iv v
+bspc monitor eDP1 -d i ii iii iv v vi vii viii ix x
 
 ###This creates and names desktops for multiple monitors.
 #workspaces_multimonitor &
@@ -50,3 +50,5 @@ bspc rule -a runelite state=floating
 ###External rules
 ##Pseudo automatic mode: always splits focused window when opening new window
 bspc config external_rules_command /usr/bin/pseudo_automatic_mode
+
+sh ~/.config/polybar/launch.sh
