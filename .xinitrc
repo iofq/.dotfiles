@@ -27,6 +27,7 @@ autorandr --load lap
 xbacklight -set 80
 sxhkd &
 picom &
+bspwmrice.sh &
 redshift -l 43:-89 &
 
 #system-specific scripts
