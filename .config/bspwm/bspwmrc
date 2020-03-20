@@ -30,10 +30,10 @@ bspc config presel_feedback_color "$foreground"
 
 bspc config border_width 0
 
-bspc config focus_follows_pointer false
+bspc config focus_follows_pointer true
 bspc config pointer_follows_focus false
-bspc config click_to_focus button2 #middle click
-bspc config swallow_first_click true
+bspc config click_to_focus button1 #middle click
+bspc config swallow_first_click false
 
 #Settings for manual splitting
 bspc config split_ratio         0.50
@@ -43,9 +43,7 @@ bspc monitor eDP1 -d i ii iii iv v vi vii viii ix x
 ###This creates and names desktops for multiple monitors.
 #workspaces_multimonitor &
 
-bspc rule -a spotify state=pseudo_tiled
 bspc rule -a firefox state=tiled
-bspc rule -a runelite state=floating
 
 ###External rules
 ##Pseudo automatic mode: always splits focused window when opening new window

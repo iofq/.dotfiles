@@ -207,7 +207,7 @@ super + alt + button{5,4}
 
 #Reset window gap
 super + alt + button2
-    bspc config -d focused window_gap -1
+    bspc config -d focused window_gap -$gap
 #
 # mouse bindings
 # __________________
