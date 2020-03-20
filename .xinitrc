@@ -29,7 +29,6 @@ sxhkd &
 picom &
 bspwmrice.sh &
 redshift -l 43:-89 &
-xbindkeys &
 
 #system-specific scripts
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then

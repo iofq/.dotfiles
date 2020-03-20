@@ -59,6 +59,7 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 alias cp="rsync -avh --progress"
 alias la='ls -lah'
 alias cdd='cd ..'
+alias :q="exit"
 alias df='df -h'                                               # Human-readable sizes
 if which exa 2>&1 >/dev/null; then
   alias ls='exa'
