@@ -1,12 +1,16 @@
 FROM archlinux:latest
+#TODO: env file for packages to install
 
 #base
 RUN pacman --noconfirm -Syu && \
-  pacman --noconfirm -S vim zsh git htop wget curl sudo make \
+  pacman --noconfirm -Syu vim zsh git htop wget curl sudo make \
   gcc tmux openssh exa
 
 #development
-RUN pacman --noconfirm -Syu nodejs npm python python-pip rust cdrkit
+RUN pacman --noconfirm -Syu nodejs npm python python-pip rust ansible
+
+#networking
+RUN pacman --noconfirm -Syu tcpdump nmap 
 
 # User setup
 RUN useradd -m e && \

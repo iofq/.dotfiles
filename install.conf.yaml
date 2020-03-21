@@ -16,7 +16,6 @@
       force: true
     ~/.xinitrc: .xinitrc
     ~/.Xresources: .Xresources
-    ~/.xbindkeysrc: .xbindkeysrc
     ~/.zshrc: .zshrc
     ~/.zsh: .zsh/
     ~/.config:
