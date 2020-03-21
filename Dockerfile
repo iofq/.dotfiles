@@ -2,15 +2,22 @@ FROM archlinux:latest
 #TODO: env file for packages to install
 
 #base
-RUN pacman --noconfirm -Syu && \
-  pacman --noconfirm -Syu vim zsh git htop wget curl sudo make \
+RUN pacman --noconfirm -Syu
+RUN pacman --noconfirm -Sy vim zsh git htop wget curl sudo make \
   gcc tmux openssh exa
+RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 
 #development
-RUN pacman --noconfirm -Syu nodejs npm python python-pip rust ansible
+RUN pacman --noconfirm -Sy nodejs npm python python-pip rust ansible
+RUN yay --noconfirm -Sy doctl-bin
+#kubernetes
+RUN  curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
+  chmod +x ./kubectl && \
+  mv ./kubectl /usr/local/bin/kubectl && \
+
 
 #networking
-RUN pacman --noconfirm -Syu tcpdump nmap 
+RUN pacman --noconfirm -Sy tcpdump nmap 
 
 # User setup
 RUN useradd -m e && \
