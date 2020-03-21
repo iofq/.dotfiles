@@ -22,7 +22,7 @@ RUN useradd -m e && \
 # Ran as user e
 USER e
 RUN cd && git clone https://github.com/iofq/.dotfiles && cd .dotfiles && ./install && \
-    ssh-keygen -f ~/.ssh/id_rsa -N ""
+    ssh-keygen -f ~/.ssh/id_rsa -N "" >/dev/null
 
 EXPOSE 22
 ENV args="-c tmux"
