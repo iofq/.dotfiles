@@ -17,12 +17,12 @@ RUN useradd -m e && \
   echo "e ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
   chsh -s /bin/zsh e && \
   chown -R e:e /home/e && \
-  ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime && \
-  ssh-keygen -f ~/.ssh/id_rsa -N ""
+  ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
 
 # Ran as user e
 USER e
-RUN cd && git clone https://github.com/iofq/.dotfiles && cd .dotfiles && ./install
+RUN cd && git clone https://github.com/iofq/.dotfiles && cd .dotfiles && ./install && \
+    ssh-keygen -f ~/.ssh/id_rsa -N ""
 
 EXPOSE 22
 ENV args="-c tmux"
