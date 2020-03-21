@@ -28,7 +28,7 @@ USER e
 RUN cd && git clone https://github.com/iofq/.dotfiles && cd .dotfiles && ./install && \
     ssh-keygen -f ~/.ssh/id_rsa -N "" >/dev/null
 #build yay
-RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+RUN git clone https://aur.archlinux.org/yay.git /home/e/yay && cd /home/e/yay && makepkg -si
 #doctl
 RUN yay --noconfirm -Sy doctl-bin
 
