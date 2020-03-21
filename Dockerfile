@@ -17,7 +17,8 @@ RUN useradd -m e && \
   echo "e ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
   chsh -s /bin/zsh e && \
   chown -R e:e /home/e && \
-  ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
+  ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime && \
+  ssh-keygen -f ~/.ssh/id_rsa -N ""
 
 # Ran as user e
 USER e
