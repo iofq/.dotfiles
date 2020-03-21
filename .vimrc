@@ -15,6 +15,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " tab completion
 Plug 'junegunn/fzf' "fuzzy file finder, like ctrl-p. use :FZF
 Plug 'Yggdroot/indentLine' " display indents (for yaml) :IndentLineToggle
 Plug 'vim-python/python-syntax' " better python syntax
+Plug 'preservim/nerdtree'
 call plug#end()
 
 
@@ -40,18 +41,21 @@ let python_highlight_all = 1
 "indentLine setting You can also use one of ¦, ┆, │, ⎸, or ▏
 let g:indentLine_char = '⎸'
 
+" close vim if only nerdtree is open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "KEYBINDS
 " use system clipboard
 set clipboard=unnamedplus
 "set paste, nopaste F2
 set pastetoggle=<F2>
-" leader = comma
-let mapleader = ','
+" leader = space
+map <Space> <Leader>
+" easy Esc
+inoremap wq <Esc>l
+vnoremap wq <Esc>l
 
-" jj to esc, no movement
-inoremap jj <Esc>l
-vnoremap jj <Esc>l
+
 " Ctrl-L in insert mode to move to end line
 inoremap <C-l> <C-o>$
 nnoremap <C-l> $
@@ -68,12 +72,15 @@ noremap ZZ :w<CR>
 noremap ZX :wq<CR>
 noremap XXX :q!<CR>
 
-" vanilla vim autopairs
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap {<CR> {<CR>}<ESC>O
+" easier window movement
+map <Leader>h <C-W>h
+map <Leader>j <C-W>j
+map <Leader>k <C-W>k
+map <Leader>l <C-W>l
 
-" vim-surround bindings
+" vanilla vim autopairs
+inoremap {<CR> {<CR>}<ESC>O
+" vim surround bindings
 :nnoremap <Leader>s" ciw""<Esc>P
 :nnoremap <Leader>s' ciw''<Esc>P
 :nnoremap <Leader>s[ ciw[]<Esc>P
@@ -81,6 +88,9 @@ inoremap {<CR> {<CR>}<ESC>O
 :nnoremap <Leader>s( ciw()<Esc>P
 :nnoremap <Leader>s) ciw()<Esc>P
 :nnoremap <Leader>sd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
+
+map <Leader>n :NERDTreeToggle<CR>
+map <Leader>t :term<CR>
 
 "END KEYBINDS
 
@@ -147,7 +157,7 @@ highlight Linenr ctermfg=8 ctermbg=NONE
 highlight CursorLineNR ctermfg=3 ctermbg=NONE
 highlight TabLine ctermfg=8 ctermbg=NONE cterm=NONE
 highlight TabLineSel ctermfg=7 ctermbg=NONE cterm=bold,underline
-highlight StatusLine ctermfg=1 ctermbg=0 cterm=bold,underline
+highlight StatusLine ctermfg=5 ctermbg=0 cterm=underline
 highlight StatusLineNC ctermfg=8 ctermbg=0 cterm=underline
 highlight VertSplit ctermfg=1 ctermbg=0 cterm=none
 highlight MatchParen ctermbg=magenta ctermfg=Black
