@@ -4,7 +4,7 @@ FROM archlinux:latest
 #base
 RUN pacman --noconfirm -Syu
 RUN pacman --noconfirm -Sy vim zsh git htop wget curl sudo make \
-  gcc tmux openssh exa
+  gcc tmux openssh exa fakeroot base-devel
 
 #development
 RUN pacman --noconfirm -Sy nodejs npm python python-pip rust ansible
