@@ -36,7 +36,10 @@ nnoremap <C-p> :FZF! ../ <cr> " Ctrl-P
 "
 "OTHER PLUGIN SETTINGS
 "better syntax in python 
-let python_highlight_all = 1
+let g:python_highlight_all = 1
+let g:python_highlight_indent_errors = 0
+let g:python_highlight_space_errors = 0
+filetype plugin indent on
 
 "indentLine setting You can also use one of ¦, ┆, │, ⎸, or ▏
 let g:indentLine_char = '⎸'
@@ -49,12 +52,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 set clipboard=unnamedplus
 "set paste, nopaste F2
 set pastetoggle=<F2>
-" leader = space
-map <Space> <Leader>
+" leader = comma
+let mapleader=","
+
 " easy Esc
 inoremap wq <Esc>l
+tnoremap wq <C-w>:q!<CR>
 vnoremap wq <Esc>l
-
 
 " Ctrl-L in insert mode to move to end line
 inoremap <C-l> <C-o>$
@@ -62,37 +66,42 @@ nnoremap <C-l> $
 " Ctrl-H in insert mode to move to beginning
 inoremap <C-h> <C-o>0
 nnoremap <C-h> 0
-" Ctrl-J and K to D and U
-noremap <C-j> 8j
-imap <C-j> <C-o>8j
-imap <C-k> <C-o>8k
-noremap <C-k> 8k
+" Ctrl-J and K to ()
+noremap <C-j> (
+imap <C-j> <C-o>(
+imap <C-k> <C-o>)
+noremap <C-k> )
 "ZZ to :w, ZX to :wq
 noremap ZZ :w<CR>
 noremap ZX :wq<CR>
-noremap XXX :q!<CR>
+noremap XZX :q!<CR>
 
 " easier window movement
 map <Leader>h <C-W>h
+map <Leader>h <C-W>h
 map <Leader>j <C-W>j
 map <Leader>k <C-W>k
-map <Leader>l <C-W>l
+" and in :term mode
+tnoremap <Leader>l <C-W>l
+tnoremap <Leader>j <C-W>j
+tnoremap <Leader>k <C-W>k
+tnoremap <Leader>l <C-W>l
 
 " vanilla vim autopairs
 inoremap {<CR> {<CR>}<ESC>O
-" vim surround bindings
-:nnoremap <Leader>s" ciw""<Esc>P
-:nnoremap <Leader>s' ciw''<Esc>P
-:nnoremap <Leader>s[ ciw[]<Esc>P
-:nnoremap <Leader>s] ciw[]<Esc>P
-:nnoremap <Leader>s( ciw()<Esc>P
-:nnoremap <Leader>s) ciw()<Esc>P
-:nnoremap <Leader>sd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
 
 map <Leader>n :NERDTreeToggle<CR>
+map <F1> :NERDTreeToggle<CR>
 map <Leader>t :term<CR>
 
+" run python -i on current file
+autocmd FileType python nnoremap <F5> :term python -i %<CR>
+
 "END KEYBINDS
+
+" method folding (za)
+set foldmethod=indent
+set foldlevel=99
 
 " Show line numbers
 set number
@@ -122,6 +131,9 @@ set softtabstop=2
 set expandtab
 set breakindent
 set noshiftround
+
+" whitespace for python 
+autocmd FileType python setlocal ts=4 sts=4 sw=4
 
 " Cursor motion
 set scrolloff=3
@@ -161,6 +173,7 @@ highlight StatusLine ctermfg=5 ctermbg=0 cterm=underline
 highlight StatusLineNC ctermfg=8 ctermbg=0 cterm=underline
 highlight VertSplit ctermfg=1 ctermbg=0 cterm=none
 highlight MatchParen ctermbg=magenta ctermfg=Black
+highlight Folded ctermfg=0 ctermbg=7 cterm=none
 
 highlight CocErrorFloat ctermbg=1 ctermfg=0 cterm=none "232 is black-ish
 highlight Pmenu ctermbg=7 ctermfg=0 cterm=none
