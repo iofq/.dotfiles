@@ -16,6 +16,7 @@ Plug 'junegunn/fzf' "fuzzy file finder, like ctrl-p. use :FZF
 Plug 'Yggdroot/indentLine' " display indents (for yaml) :IndentLineToggle
 Plug 'vim-python/python-syntax' " better python syntax
 Plug 'preservim/nerdtree'
+Plug 'junegunn/goyo.vim' " zen mode with <leader>z
 call plug#end()
 
 
@@ -41,6 +42,9 @@ let g:python_highlight_indent_errors = 0
 let g:python_highlight_space_errors = 0
 filetype plugin indent on
 
+" goyo 
+let g:goyo_linenr = 1
+
 "indentLine setting You can also use one of ¦, ┆, │, ⎸, or ▏
 let g:indentLine_char = '⎸'
 
@@ -55,6 +59,9 @@ set pastetoggle=<F2>
 " leader = comma
 let mapleader=","
 
+" Goyo
+nnoremap <Leader>Z :Goyo<CR>
+
 " easy Esc
 inoremap wq <Esc>l
 tnoremap wq <C-w>:q!<CR>
@@ -63,24 +70,26 @@ vnoremap wq <Esc>l
 " Ctrl-L in insert mode to move to end line
 inoremap <C-l> <C-o>$
 nnoremap <C-l> $
+vnoremap <C-l> $
 " Ctrl-H in insert mode to move to beginning
 inoremap <C-h> <C-o>0
 nnoremap <C-h> 0
-" Ctrl-J and K to ()
-noremap <C-j> (
-imap <C-j> <C-o>(
-imap <C-k> <C-o>)
-noremap <C-k> )
+vnoremap <C-h> 0
+" Ctrl-J and K to {}
+noremap <C-j> }
+imap <C-j> <C-o>}
+imap <C-k> <C-o>{
+noremap <C-k> {
 "ZZ to :w, ZX to :wq
 noremap ZZ :w<CR>
 noremap ZX :wq<CR>
 noremap XZX :q!<CR>
 
 " easier window movement
-map <Leader>h <C-W>h
-map <Leader>h <C-W>h
-map <Leader>j <C-W>j
-map <Leader>k <C-W>k
+noremap <Leader>h <C-W>h
+noremap <Leader>l <C-W>l
+noremap <Leader>j <C-W>j
+noremap <Leader>k <C-W>k
 " and in :term mode
 tnoremap <Leader>l <C-W>l
 tnoremap <Leader>j <C-W>j
@@ -159,7 +168,6 @@ set showmatch
 
 
 " Color scheme (terminal)
-
 set t_Co=256
 set background=dark
 colorscheme default 
