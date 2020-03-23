@@ -80,5 +80,4 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up			
 bindkey '^[[B' history-substring-search-down
 
-source ~/.bash_profile
 source ~/.bash_aliases
