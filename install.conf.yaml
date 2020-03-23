@@ -14,12 +14,13 @@
     ~/.bash_profile: 
       path: .bash_profile
       force: true
+    ~/.bash_aliases: ~/.bash_aliases
     ~/.xinitrc: .xinitrc
     ~/.Xresources: .Xresources
     ~/.zshrc: .zshrc
     ~/.zsh: .zsh/
-    ~/.config:
-      path: .config/
+    ~/.config/*:
+      path: .config/*
     
 - shell:
   - [git submodule update --init --recursive, updating submodules]
