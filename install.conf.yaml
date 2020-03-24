@@ -4,15 +4,15 @@
       create: true
 
 - link:
-    ~/.tmux.conf: 
-    ~/.vimrc: 
+    ~/.tmux.conf: .tmux.conf 
+    ~/.vimrc: .vimrc
     ~/.bashrc: 
       path: .bashrc
       force: true
-    ~/.bash_aliases:
-    ~/.xinitrc:
-    ~/.Xresources:
-    ~/.zshrc:
+    ~/.bash_aliases: .bash_aliases
+    ~/.xinitrc: .xinitrc
+    ~/.Xresources: .Xresources
+    ~/.zshrc: .zshrc
     ~/.zsh: 
       path: .zsh/
     ~/.config/:
