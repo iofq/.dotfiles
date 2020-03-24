@@ -5,19 +5,19 @@
 
 - link:
     ~/.tmux.conf: 
-      path: .tmux.conf
     ~/.vimrc: 
-      path: .vimrc
     ~/.bashrc: 
       path: .bashrc
       force: true
-    ~/.bash_aliases: .bash_aliases
-    ~/.xinitrc: .xinitrc
-    ~/.Xresources: .Xresources
-    ~/.zshrc: .zshrc
-    ~/.zsh: .zsh/
+    ~/.bash_aliases:
+    ~/.xinitrc:
+    ~/.Xresources:
+    ~/.zshrc:
+    ~/.zsh: 
+      path: .zsh/
     ~/.config/:
-      path: .config/
+      glob: true
+      path: .config/*
     
 - shell:
   - [git submodule update --init --recursive, updating submodules]

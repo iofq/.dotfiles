@@ -7,6 +7,7 @@ alias more="less"
 alias free="free -m"
 alias cdd='cd ..'
 alias :q="exit"
+alias ssh="export TERM=vt100 && ssh"      #compatibility
 alias df='df -h'                                               # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
 alias gitu='git add . && git commit -m "n/a" && git push'
