@@ -12,7 +12,7 @@ alias df='df -h'                                               # Human-readable 
 alias free='free -m'                                            # Show sizes in MB
 alias gitu='git add . && git commit -m "n/a" && git push'
 alias rice="cd /home/code"
-alias dev="cd /mnt/nfs/dev"
+alias dev="cd /mnt/gfs/dev"
 if which exa 2>&1 >/dev/null; then
     alias ls='exa'
 fi
