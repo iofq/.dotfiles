@@ -9,74 +9,22 @@
 
 ;Various colour definitons taken from gruvbox
 [colors]
-;Dark blue
-DKBL = ${xrdb:color0:#222}
-;Dark red
-DKRD = ${xrdb:color1:#222}
-BRRD = ${xrdb:color2:#222}
-;Bright Yellow
-BRYL = ${xrdb:color3:#222}
-
-;Dark Green
-DKGR = ${xrdb:color4:#222}
-
-;Bright Green
-BRGR = ${xrdb:color5:#222}
-
-;Bright Blue
-BRBL = ${xrdb:color6:#222}
-
-;Background (Black-ish)
 BKGD =${xrdb:background:#222}
-
-;Foreground (White-ish)
 FRGD =${xrdb:foreground:#222}
-
-;Bright Aqua
-BRAQ =${xrdb:color9:#222}
-
-;Dark Aqua
-DKAQ =${xrdb:color10:#222}
-
-;Dark Orange
-DKOR =${xrdb:color11:#222}
-
-;now im just making shit up
-BROR =${xrdb:color7:#222}
-DKGN =${xrdb:color4:#222}
 BRBR =${xrdb:color8:#222}
 
 [bar/bar]
-;Change this to match monitor, find via xrandr -q
 monitor = eDP1
-;These will have to be adjusted to set position and size of main bar
 width = 1920
 height = 27
-offset-x = 0
-offset-y = 0
-radius = 0
 fixed-center = true
 enable-ipc = true
 
 background = ${colors.BKGD}
-#foreground is light grey
 foreground = ${colors.BRBR}
 
-line-size = 3
-line-color = #f00
-
-border-size = 0
-border-color = #FFFFFFFF
-
-#real font declaration here
 font-0 = "RobotoMono Nerd Font Mono:size=9;1"
 font-1 = "FontAwesome:pixelsize=22;1"
-
-padding-left = 0
-padding-right = 0
-
-module-margin-left = 0
-module-margin-right = 0
 
 modules-left = bspwm
 modules-center =
@@ -84,24 +32,10 @@ modules-right = memory cpu temperature battery date powermenu
 
 separator = 
 
-;tray-position = right
-;tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
-
 wm-restack = bspwm
-;wm-restack = i3
-
 override-redirect = true
 
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
 cursor-click = pointer
-;cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
@@ -141,12 +75,6 @@ format-suffix =
 format-foreground = ${colors.BRBR}
 label = " %percentage:4:4%%  "
 
-#[module/freq]
-#type = custom/script
-#exec = mhz
-#interval = 9 
-#format-##underline = ${colors.DKGN}
-
 [module/memory]
 type = internal/memory
 interval = 2
@@ -176,7 +104,6 @@ label = "%date% %time% "
 
 [module/battery]
 type = internal/battery
-;These should be the defaults, but may need to be changed
 battery = BAT0
 adapter = ADP1
 full-at = 100 
@@ -257,23 +184,7 @@ menu-3-1-exec = tlp ac
 
 [settings]
 screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
 
 [global/wm]
 margin-top = 0
 margin-bottom = 0
-
-[module/demo]
-type = custom/ipc
-hook-0 = echo foobar
-hook-1 = date +%s
-hook-2 = whoami
-initial = 1
-click-left = polybar-msg -p %pid% hook demo 1
-click-right = polybar-msg -p %pid% hook demo 2
-double-click-left = polybar-msg -p %pid% hook demo 3
-
-; vim:ft=dosini
