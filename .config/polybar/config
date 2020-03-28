@@ -51,7 +51,7 @@ BRBR =${xrdb:color8:#222}
 monitor = eDP1
 ;These will have to be adjusted to set position and size of main bar
 width = 1920
-height = 23
+height = 27
 offset-x = 0
 offset-y = 0
 radius = 0
