@@ -85,7 +85,7 @@ format-prefix =
 format-suffix = 
 #format-underline = ${colors.DKOR}
 format-foreground = ${colors.BRBR}
-label = "%mb_used:4:4%MB"
+label = "%gb_used:4:4%G"
 
 [module/date]
 type = internal/date
