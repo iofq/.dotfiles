@@ -175,9 +175,9 @@ super + space
 	dmenu_run
 
 super + Return
-  kitty
+  st
 super + z
-	kitty -e tmux
+	st -e tmux
 
 super + shift + z
 	open-terminal-here
