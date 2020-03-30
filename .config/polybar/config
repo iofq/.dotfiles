@@ -12,6 +12,9 @@
 BKGD =${xrdb:background:#222}
 FRGD =${xrdb:foreground:#222}
 BRBR =${xrdb:color8:#222}
+BRRD =${xrdb:color8:#222}
+DKRD =${xrdb:color1:#222}
+DKAQ =${xrdb:color1:#222}
 
 [bar/bar]
 monitor = eDP1
