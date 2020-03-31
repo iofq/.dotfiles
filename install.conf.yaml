@@ -12,6 +12,7 @@
     ~/.bash_aliases: .bash_aliases
     ~/.xinitrc: .xinitrc
     ~/.Xresources: .Xresources
+    ~/.Xmodmap: .Xmodmap
     ~/.zshrc: .zshrc
     ~/.zsh: 
       path: .zsh/
