@@ -19,7 +19,6 @@ xset c on &
 xset -dpms &
 ## Welcome message
 srandrd atorandr.sh --change
-xcape -e 'Super_L=Super_L|Shift_L|space' &
 dbus-launch gsettings set org.mate.NotificationDaemon theme 'slider' && sed -i '/gsettings/d' ~/.config/bspwm/autostart &
 
 flatwal base16-solarized
