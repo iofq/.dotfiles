@@ -1,10 +1,4 @@
-﻿# bspwm hotkeys
-# Cleanly quit bspwm
-super + Mod1 + shift + q
-	bspc quit 1 && pkill lemonpanel && pkill lemonbar
-
-#
-# Window manipulation
+﻿# Window manipulation
 # ______________
 
 # Close window
@@ -16,9 +10,6 @@ super + y
 super + shift + y
     pkill -f stack_windows && bspc node @/ -E
 
-# Kill window, note kill window kills all instances
-super + shift + x
-	bspc node -k                         
 # Toggle tiling mode of window
 super + shift + t
 	bspc node -t {pseudo_tiled,tiled}
@@ -27,14 +18,6 @@ super + t
 # Toggle fullscreen
 super + shift + f 
 	bspc node -t {fullscreen,tiled}	
-
-# Try to keep size and position of the selected window
-super + o
-	bspc node -g private
-
-# Make window sticky
-super + i
-	bspc node -g sticky
 
 # Lock a window from closing
 super + Escape
@@ -47,43 +30,18 @@ super + c
 super + shift + c
     whid hide
 
-super + ctrl + c
-    whid last
-
 #
 # Window moving and splitting
 # ______________    
 
-# Autopresel (split window in its largest dimension)
-super + ctrl + Return
-	auto-presel
-
-ctrl + space
-	auto-presel
-	
 # Presel window for splitting in certain direction
-alt + ctrl + {a,s,w,d}
+alt + super + {a,s,w,d}
 	bspc node -p \~{west,south,north,east} -i
-
-alt + ctrl + {h,j,k,l}
+alt + super + {h,j,k,l}
+	bspc node -p \~{west,south,north,east}
+alt + super + {Left,Down,Up,Right}
 	bspc node -p \~{west,south,north,east}
 
-alt + ctrl + {Left,Down,Up,Right}
-	bspc node -p \~{west,south,north,east}
-
-# alt + shift + {Left,Down,Up,Right}
-	# bspc node @/ -p \~{west,south,north,east}
-# Set splitting ratio of windows
-alt + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-		
-# Move current window to largest space or preselected area if there is one.
-super + alt + Return
-    windowpromoter
-
-# Resize the focused window to preselection or based on receptacles
-alt + Return
-	resizetopresel.sh
 		
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
 super + {_,shift + }{1-9,0}
@@ -92,10 +50,6 @@ super + {_,shift + }{1-9,0}
 # Select previous / next desktop
 super + {m,n}
 	bspc desktop -f {prev.occupied,next.occupied} 
-
-# cycle windows
-alt + {_,shift + }Tab
-    bspc node -f {next,prev}
 
 #Focus windows by direction, works with multihead
 super +  {a,s,w,d}
@@ -167,7 +121,6 @@ super + alt + button2
     bspc config -d focused window_gap -$gap
 
 ~button1
-	DidIClickDesktop.sh && gapgrab	
 
 ~button3
 	
@@ -179,11 +132,6 @@ super + Return
 super + z
 	st -e tmux
 
-super + shift + z
-	open-terminal-here
-	
-super + r
-	rofi-finder.sh
 super + shift + f
 	firefox
 super + shift + o

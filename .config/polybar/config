@@ -64,8 +64,7 @@ label-urgent = " %name% "
 label-urgent-foreground = ${colors.BRRD}
 label-urgent-padding = 0
 
-;label-empty = " %name% "
-label-empty = 
+label-empty = " %name% "
 label-empty-foreground = ${colors.BRBR}
 label-empty-padding = 0
 
