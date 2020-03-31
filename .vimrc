@@ -1,5 +1,7 @@
 " Mouse in visual modes
 set mouse=a
+" fix scrolling
+set ttymouse=sgr
 
 " Installs vim-plugged if it is not
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -191,10 +193,10 @@ highlight TabLine ctermfg=8 ctermbg=NONE cterm=NONE
 highlight TabLineSel ctermfg=7 ctermbg=NONE cterm=bold,underline
 highlight StatusLine ctermfg=5 ctermbg=0 cterm=underline
 highlight StatusLineNC ctermfg=8 ctermbg=0 cterm=underline
-highlight VertSplit ctermfg=1 ctermbg=0 cterm=none
+highlight VertSplit ctermfg=5 ctermbg=0 cterm=none
 highlight MatchParen ctermbg=magenta ctermfg=Black
 highlight Folded ctermfg=0 ctermbg=7 cterm=none
-
+highlight EndOfBuffer ctermfg=black ctermbg=black
 highlight CocErrorFloat ctermbg=1 ctermfg=0 cterm=none "232 is black-ish
 highlight Pmenu ctermbg=7 ctermfg=0 cterm=none
 highlight PmenuSel ctermbg=3 ctermfg=0 
