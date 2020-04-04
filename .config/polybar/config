@@ -31,7 +31,7 @@ font-1 = "FontAwesome:pixelsize=22;1"
 
 modules-left = bspwm
 modules-center =
-modules-right = mem memory cpu temperature battery date powermenu
+modules-right = mem cpu temperature battery date powermenu
 
 separator = 
 
@@ -88,7 +88,7 @@ label = "%gb_used:4:4%G"
 
 [module/mem]
 type = custom/script
-exec = echo "scale=2; $(free -m | sed -n 2p | awk '{print $3}') / 1000" | bc
+exec = echo "scale=2; $(free -m | sed -n 2p | awk '{print $3 + $5}') / 1000" | bc
 tail = false
 interval = 2
 
