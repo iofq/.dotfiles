@@ -95,7 +95,7 @@ interval = 2
 format = <label>
 format-background = ${colors.BKGD}
 format-foreground = ${colors.BRBR}
-label = "%output%G   "
+label = "%output%G"
 
 [module/date]
 type = internal/date

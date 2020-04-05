@@ -35,11 +35,11 @@ super + shift + c
 # ______________    
 
 # Presel window for splitting in certain direction
-alt + super + {a,s,w,d}
+alt + ctrl + {a,s,w,d}
 	bspc node -p \~{west,south,north,east} -i
-alt + super + {h,j,k,l}
+alt + ctrl + {h,j,k,l}
 	bspc node -p \~{west,south,north,east}
-alt + super + {Left,Down,Up,Right}
+alt + ctrl + {Left,Down,Up,Right}
 	bspc node -p \~{west,south,north,east}
 
 		
