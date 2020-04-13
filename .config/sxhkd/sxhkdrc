@@ -152,12 +152,12 @@ super + shift + r
 	./bspwmrc
 
 super + F6
-	xbacklight -dec 10
+	xbacklight -dec 15
 super + F7
-    xbacklight -inc 10
+    xbacklight -inc 15
 super + F8
 	amixer -c 0 set Headphone toggle
 super + F9
-	amixer -c 0 set Headphone 5- unmute
+	amixer -c 0 set Headphone 10- unmute
 super + F10
-	amixer -c 0 set Headphone 5+ unmute
+	amixer -c 0 set Headphone 10+ unmute

@@ -1,5 +1,4 @@
 FROM alpine:latest
-#TODO: env file for packages to install
 
 #base
 RUN apk update && \
@@ -7,14 +6,15 @@ RUN apk update && \
 
 #dev
 RUN apk add ansible python3 npm nodejs
+RUN npm install -g corona-cli
 
 #net
 RUN apk add nmap 
 
 #kubernetes
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
-  chmod +x ./kubectl && \
-  mv ./kubectl /usr/local/bin/kubectl
+#RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
+ # chmod +x ./kubectl && \
+  #mv ./kubectl /usr/local/bin/kubectl
 
 # User setup
 RUN addgroup -S e && adduser -S e -G e -s /bin/zsh -h /home/e && \
