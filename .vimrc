@@ -61,33 +61,28 @@ tnoremap wq <C-w>:q!<CR>
 vnoremap wq <Esc>l
 
 " Ctrl-L in insert mode to move to end line
-inoremap <C-l> <C-o>$
-nnoremap <C-l> $
-vnoremap <C-l> $
+inoremap <C-]> <C-o>$
+nnoremap <C-]> $
+vnoremap <C-]> $
 " Ctrl-H in insert mode to move to beginning
-inoremap <C-h> <C-o>0
-nnoremap <C-h> 0
-vnoremap <C-h> 0
-" Ctrl-J and K to {}
-noremap <C-j> }
-imap <C-j> <C-o>}
-imap <C-k> <C-o>{
-noremap <C-k> {
+inoremap <C-[> <C-o>0
+nnoremap <C-[> 0
+vnoremap <C-[> 0
 "ZZ to :w, ZX to :wq
 noremap ZZ :w<CR>
 noremap ZX :wq<CR>
 noremap XZX :q!<CR>
 
 " easier window movement
-noremap <Leader>h <C-W>h
-noremap <Leader>l <C-W>l
-noremap <Leader>j <C-W>j
-noremap <Leader>k <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
 " and in :term mode
-tnoremap <Leader>l <C-W>l
-tnoremap <Leader>j <C-W>j
-tnoremap <Leader>k <C-W>k
-tnoremap <Leader>l <C-W>l
+tnoremap <C-l> <C-W>l
+tnoremap <C-j> <C-W>j
+tnoremap <C-k> <C-W>k
+tnoremap <C-l> <C-W>l
 
 " vanilla vim autopairs
 inoremap {<CR> {<CR>}<ESC>O
@@ -181,7 +176,7 @@ colorscheme default
 
 highlight TabLineFill ctermfg=Black ctermbg=NONE cterm=bold
 highlight Linenr ctermfg=8 ctermbg=NONE
-highlight CursorLineNR ctermfg=3 ctermbg=NONE
+highlight CursorLineNR ctermfg=0 ctermbg=8 cterm=none
 highlight TabLine ctermfg=8 ctermbg=NONE cterm=NONE
 highlight TabLineSel ctermfg=7 ctermbg=NONE cterm=bold,underline
 highlight StatusLine ctermfg=5 ctermbg=0 cterm=underline
