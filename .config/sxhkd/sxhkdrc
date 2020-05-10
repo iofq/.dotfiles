@@ -5,11 +5,6 @@
 super + x
 	bspc node -c
 
-super + y
-    stack_windows
-super + shift + y
-    pkill -f stack_windows && bspc node @/ -E
-
 # Toggle tiling mode of window
 super + shift + t
 	bspc node -t {pseudo_tiled,tiled}
@@ -18,10 +13,6 @@ super + t
 # Toggle fullscreen
 super + shift + f 
 	bspc node -t {fullscreen,tiled}	
-
-# Lock a window from closing
-super + Escape
-	bspc node -g locked 
 
 ### Map or unmap windows (functional equivalent of "minimize")
 super + c
@@ -47,10 +38,6 @@ alt + ctrl + {Left,Down,Up,Right}
 super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} ^{1-9,10}
 
-# Select previous / next desktop
-super + {m,n}
-	bspc desktop -f {prev.occupied,next.occupied} 
-
 #Focus windows by direction, works with multihead
 super +  {a,s,w,d}
     focusmover {west,south,north,east}
@@ -61,33 +48,17 @@ super +  {h,j,k,l}
 super +  {Left,Down,Up,Right}
     focusmover {west,south,north,east}
         	
-# Move tiled windows. Moving a tiled window to 
-# preselected one moves into preselection instead. 
 # Moving out of the screen should move the window to next monitor if possible
-super + shift + {a,s,w,d}
-	windowgrabber {west,south,north,east}
-
 super + shift + {h,j,k,l}
 	windowgrabber {west,south,north,east}
 	
 # Different style of movement: transplant into window in chosen direction
-super + shift + {Left,Down,Up,Right}
+super + shift + {h,j,k,l}
 	euclid_mover {west,south,north,east}
-
-#resize windows
-super + alt + {a,s,w,d}
-	bspwm_resize.sh {west,south,north,east}
 
 super + alt + {h,j,k,l}
 	bspwm_resize.sh {west,south,north,east}
 	
-super + alt + {Left,Down,Up,Right}
-	bspwm_resize.sh {west,south,north,east}
-
-#
-# Layout manipulation/desktop level controls
-# ______________    
-
 # Toggle monocle mode
 super + f 
 	bspc desktop -l next
@@ -96,10 +67,6 @@ super + f
 super + b
 	bspc node @/ -B
 
-# Balance brother node. If you do this on biggest window of the desktop, it usually means balancing all windows with except the biggest.
-super + alt + b
-	bspc node @brother -B
-	
 # Undo balancing (equalize windows)
 super + ctrl + b
 	bspc node @/ -E
@@ -134,23 +101,10 @@ super + z
 
 super + shift + f
 	firefox
-super + shift + o
-	xtrlock
-
-alt + space
-	bspc rule -a \* -o state=floating && st
 
 super 
+
         
-	
-# make sxhkd reload its configuration files:
-super + shift + Escape
-	pkill -USR1 -x sxhkd
-
-# In case bspwmrc fails to execute/you wish have plugged in a new monitor
-super + shift + r
-	./bspwmrc
-
 super + F6
 	xbacklight -dec 15
 super + F7

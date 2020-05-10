@@ -55,6 +55,8 @@ bindkey '^[[1;5D' backward-word                                 #
 bindkey '^[[1;5C' forward-word                                  #
 bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
+bindkey '^K' cd ..
+bindkey '^H' cd ~
 
 # Theming section  
 autoload -U compinit colors zcalc
@@ -82,3 +84,5 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 source ~/.bash_aliases
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh

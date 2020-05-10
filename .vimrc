@@ -1,122 +1,101 @@
-" Mouse in visual modes
-set mouse=a
-" fix scrolling
-set ttymouse=sgr
-
 " Installs vim-plugged if it is not
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 "Load plugins here (pathogen or vundle)
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround' "ysaw( or ys3aw( cs(' ds' 
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " tab completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " tab completion and other goodies
 Plug 'Yggdroot/indentLine' " display indents (for yaml) :IndentLineToggle
-Plug 'vim-python/python-syntax' " better python syntax
-Plug 'preservim/nerdtree'
 call plug#end()
-
 
 "PLUGIN BINDINGS
 " Use ctl-N for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <C-n>
       \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<C-n>" :
-                  \ coc#refresh()
-                  inoremap <expr><C-n> pumvisible() ? "\<C-p>" : "\<C-m>"
+      \ <SID>check_back_space() ? "\<C-n>" :
+      \ coc#refresh()
+inoremap <expr><S-C-n> pumvisible() ? "\<C-p>" : "\<C-m>"
 
 function! s:check_back_space() abort
-      let col = col('.') - 1
-    endfunction 
+  let col = col('.') - 1
+endfunction 
 
-"END PLUGIN BINDINGS
-"
-"OTHER PLUGIN SETTINGS
-"better syntax in python 
-let g:python_highlight_all = 1
-let g:python_highlight_indent_errors = 0
-let g:python_highlight_space_errors = 0
-filetype plugin indent on
+" END PLUGIN BINDINGS
 
-"indentLine setting You can also use one of ¦, ┆, │, ⎸, or ▏
-let g:indentLine_char = '⎸'
-
-" close vim if only nerdtree is open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-"KEYBINDS
-" use system clipboard
-set clipboard=unnamedplus
+" KEYBINDS
+" leader = comma
+let mapleader=";"
 "set paste, nopaste F2
 set pastetoggle=<F2>
-" leader = comma
-let mapleader=","
 
 " easy Esc
 inoremap wq <Esc>l
 tnoremap wq <C-w>:q!<CR>
 vnoremap wq <Esc>l
-
-" Ctrl-L in insert mode to move to end line
-inoremap <C-]> <C-o>$
-nnoremap <C-]> $
-vnoremap <C-]> $
-" Ctrl-H in insert mode to move to beginning
-inoremap <C-[> <C-o>0
-nnoremap <C-[> 0
-vnoremap <C-[> 0
 "ZZ to :w, ZX to :wq
 noremap ZZ :w<CR>
 noremap ZX :wq<CR>
 noremap XZX :q!<CR>
 
-" easier window movement
-noremap <C-h> <C-W>h
-noremap <C-l> <C-W>l
-noremap <C-j> <C-W>j
-noremap <C-k> <C-W>k
-" and in :term mode
-tnoremap <C-l> <C-W>l
-tnoremap <C-j> <C-W>j
-tnoremap <C-k> <C-W>k
-tnoremap <C-l> <C-W>l
+" leader pane movement
+nnoremap <Leader>h :wincmd h<CR>
+nnoremap <Leader>j :wincmd j<CR>
+nnoremap <Leader>k :wincmd k<CR>
+nnoremap <Leader>l :wincmd l<CR>
+inoremap <Leader>l <C-o>$
+inoremap <Leader>h <C-o>0
+
+nnoremap <Leader>te :tabe<CR>:Explore<CR>
+nnoremap <Leader>tE :tabe<CR>:Explore<space>
+nnoremap <Leader>tt :tabe<CR>
 
 " vanilla vim autopairs
 inoremap {<CR> {<CR>}<ESC>O
 
-" Visual shifting (does not exit Visual mode)
+" Visual shifting (not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
 
 " insert return in normal mode
 nnoremap <CR> i<CR><Esc>
 
-map <Leader>n :NERDTreeToggle<CR>
-map <F1> :NERDTreeToggle<CR>
-map <Leader>t :term<CR>
+" netrw binds
+map <Leader>n :Explore<CR>
+autocmd FileType netrw nnoremap ? :help netrw-quickmap<CR>
+
+map <Leader><CR> :term<CR>
 
 " run python -i on current file
 autocmd FileType python nnoremap <F5> :term python -i %<CR>
-
 "END KEYBINDS
+
+"indentLine setting You can also use one of ¦, ┆, │, ⎸, or ▏
+let g:indentLine_char = '⎸'
 
 " method folding (za)
 set foldmethod=indent
 set foldlevel=99
 
 " Show line numbers
-set number
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 " cursorline
 set cursorline
 
-" different cursors in diff modes
-" from vim wiki
-let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[4 q"
-let &t_EI = "\<Esc>[2 q"
+" netrw configs
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 0
+let g:netrw_altv = 1
 
 " Show file stats
 set ruler
@@ -131,7 +110,7 @@ set t_vb=
 set encoding=utf-8
 
 " Whitespace
-set wrap
+set nowrap
 set textwidth=0
 set wrapmargin=0
 set formatoptions=tcqrn1
@@ -140,6 +119,7 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set breakindent
+set smartindent
 set noshiftround
 set virtualedit=onemore
 
@@ -162,12 +142,24 @@ set showmode
 set showcmd
 
 " Searching
-set hlsearch
 set incsearch
+set nohlsearch
 set ignorecase
 set smartcase
 set showmatch
 
+" fuck swapfiles
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+
+" use system clipboard
+set clipboard=unnamedplus
+
+" fix scrolling
+set ttymouse=sgr
+set mouse=a
 
 " Color scheme (terminal)
 set t_Co=256
@@ -208,3 +200,4 @@ highlight Identifier ctermfg=7
 set splitbelow
 set splitright
 
+set nocompatible
