@@ -8,7 +8,6 @@ endif
 "Load plugins here (pathogen or vundle)
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround' "ysaw( or ys3aw( cs(' ds' 
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " tab completion and other goodies
 Plug 'Yggdroot/indentLine' " display indents (for yaml) :IndentLineToggle
 call plug#end()
 
@@ -25,37 +24,33 @@ function! s:check_back_space() abort
 endfunction 
 
 " END PLUGIN BINDINGS
-
+"
+"function
 " KEYBINDS
 " leader = comma
-let mapleader=";"
+let mapleader=" "
 "set paste, nopaste F2
 set pastetoggle=<F2>
 
 " easy Esc
-inoremap wq <Esc>l
+inoremap wq <Esc>l:w<CR>
 tnoremap wq <C-w>:q!<CR>
-vnoremap wq <Esc>l
-"ZZ to :w, ZX to :wq
-noremap ZZ :w<CR>
-noremap ZX :wq<CR>
-noremap XZX :q!<CR>
+vnoremap wq <Esc>l:w<CR>
+noremap XX :qa!<CR>
 
 " leader pane movement
 nnoremap <Leader>h :wincmd h<CR>
 nnoremap <Leader>j :wincmd j<CR>
 nnoremap <Leader>k :wincmd k<CR>
 nnoremap <Leader>l :wincmd l<CR>
-inoremap <Leader>l <C-o>$
-inoremap <Leader>h <C-o>0
+inoremap <C-l> <C-o>$
+inoremap <C-h> <C-o>0
 
-nnoremap <Leader>te :tabe<CR>:Explore<CR>
-nnoremap <Leader>tE :tabe<CR>:Explore<space>
+nnoremap <Leader>te :tabe<CR>:Explore<space>
 nnoremap <Leader>tt :tabe<CR>
 
 " vanilla vim autopairs
 inoremap {<CR> {<CR>}<ESC>O
-
 " Visual shifting (not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
@@ -64,13 +59,14 @@ vnoremap > >gv
 nnoremap <CR> i<CR><Esc>
 
 " netrw binds
-map <Leader>n :Explore<CR>
+map <Leader>e :Explore<space>
 autocmd FileType netrw nnoremap ? :help netrw-quickmap<CR>
 
 map <Leader><CR> :term<CR>
-
-" run python -i on current file
+noremap Y y$
+" python
 autocmd FileType python nnoremap <F5> :term python -i %<CR>
+autocmd FileType python compiler pylint
 "END KEYBINDS
 
 "indentLine setting You can also use one of ¦, ┆, │, ⎸, or ▏
@@ -136,6 +132,9 @@ set ttyfast
 
 " Status bar
 set laststatus=1
+
+set wildmenu
+set path+=**
 
 " Last line
 set showmode
