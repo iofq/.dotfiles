@@ -5,10 +5,10 @@ RUN apk update && \
   apk add --no-cache bash vim openssh curl zsh git tmux sudo 
 
 #dev
-RUN apk add ansible python3 
+RUN apk add --no-cache ansible python3 
 
 #net
-RUN apk add nmap 
+RUN apk add --no-cache nmap 
 
 #kubernetes
 #RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
