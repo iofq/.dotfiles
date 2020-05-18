@@ -172,7 +172,7 @@ highlight Boolean ctermfg=2
 highlight Comment ctermfg=4
 highlight Normal ctermfg=254
 highlight Visual ctermfg=254 ctermbg=8  " 254 is off-white
-highlight Statement ctermfg=130 " salmon
+highlight Statement ctermfg=130 "salmon
 highlight Conditional ctermfg=2
 highlight Constant ctermfg=1
 highlight Operator ctermfg=5
