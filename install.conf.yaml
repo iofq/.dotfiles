@@ -11,12 +11,9 @@
     ~/.tmux.conf: .tmux.conf 
     ~/.vimrc: .vimrc
     ~/.xinitrc: .xinitrc
-    ~/.Xresources: .Xresources
-    ~/.Xmodmap: .Xmodmap
     ~/.zshrc: .zshrc
     ~/.zsh: 
       path: .zsh/
-    ~/.config/picom.conf: .config/picom.conf
     ~/.config/bspwm/:
       glob: true
       path: .config/bspwm/*
