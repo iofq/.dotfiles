@@ -1,6 +1,3 @@
-#set vi editing mode and disable terminal flow control (Ctrl-S)
-bindkey -v
-stty -ixon
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes
@@ -103,6 +100,10 @@ function chpwd_up() {
 }
 zle -N chpwd_up
 bindkey '^K' chpwd_up
+
+#set vi editing mode and disable terminal flow control (Ctrl-S)
+bindkey -v
+stty -ixon
 
 source ~/.bash_aliases
 source /usr/share/fzf/completion.zsh

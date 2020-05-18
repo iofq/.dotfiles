@@ -7,36 +7,22 @@ endif
 
 "Load plugins here (pathogen or vundle)
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-surround' "ysaw( or ys3aw( cs(' ds' 
+Plug 'tpope/vim-surround' "yss( ysiw( cs(' ds' 
 Plug 'Yggdroot/indentLine' " display indents (for yaml) :IndentLineToggle
 call plug#end()
 
-"PLUGIN BINDINGS
-" Use ctl-N for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <C-n>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<C-n>" :
-      \ coc#refresh()
-inoremap <expr><S-C-n> pumvisible() ? "\<C-p>" : "\<C-m>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-endfunction 
-
-" END PLUGIN BINDINGS
-"
-"function
 " KEYBINDS
 " leader = comma
 let mapleader=" "
 "set paste, nopaste F2
 set pastetoggle=<F2>
-
+"autocomplete 
+inoremap <C-f> <C-x><C-f>
 " easy Esc
 inoremap wq <Esc>l:w<CR>
 tnoremap wq <C-w>:q!<CR>
 vnoremap wq <Esc>l:w<CR>
-noremap XX :qa!<CR>
+noremap XXX :qa!<CR>
 
 " leader pane movement
 nnoremap <Leader>h :wincmd h<CR>
@@ -64,8 +50,9 @@ autocmd FileType netrw nnoremap ? :help netrw-quickmap<CR>
 
 map <Leader><CR> :term<CR>
 noremap Y y$
+
 " python
-autocmd FileType python nnoremap <F5> :term python -i %<CR>
+autocmd FileType python nnoremap <Leader>tr :tab term python -i %<CR>
 autocmd FileType python compiler pylint
 "END KEYBINDS
 
@@ -169,7 +156,7 @@ highlight TabLineFill ctermfg=Black ctermbg=NONE cterm=bold
 highlight Linenr ctermfg=8 ctermbg=NONE
 highlight CursorLineNR ctermfg=0 ctermbg=8 cterm=none
 highlight TabLine ctermfg=8 ctermbg=NONE cterm=NONE
-highlight TabLineSel ctermfg=7 ctermbg=NONE cterm=bold,underline
+highlight TabLineSel ctermfg=253 ctermbg=NONE cterm=bold,underline
 highlight StatusLine ctermfg=5 ctermbg=0 cterm=underline
 highlight StatusLineNC ctermfg=8 ctermbg=0 cterm=underline
 highlight VertSplit ctermfg=5 ctermbg=0 cterm=none

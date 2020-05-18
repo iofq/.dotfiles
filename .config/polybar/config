@@ -191,9 +191,9 @@ menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
 menu-3-0 = powersave
-menu-3-0-exec = tlp bat
+menu-3-0-exec = sudo tlp bat
 menu-3-1 = performance
-menu-3-1-exec = tlp ac
+menu-3-1-exec = sudo tlp ac
 
 [settings]
 screenchange-reload = true

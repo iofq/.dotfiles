@@ -21,5 +21,5 @@ xset -dpms &
 srandrd atorandr.sh --change
 dbus-launch gsettings set org.mate.NotificationDaemon theme 'slider' && sed -i '/gsettings/d' ~/.config/bspwm/autostart &
 
-flatwal base16-eighties
+wal --theme base16-tomorrow-night
 bash $HOME/.config/polybar/launch.sh

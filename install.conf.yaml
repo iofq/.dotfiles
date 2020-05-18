@@ -4,22 +4,29 @@
       create: true
 
 - link:
-    ~/.tmux.conf: .tmux.conf 
-    ~/.vimrc: .vimrc
     ~/.bashrc: 
       path: .bashrc
       force: true
     ~/.bash_aliases: .bash_aliases
+    ~/.tmux.conf: .tmux.conf 
+    ~/.vimrc: .vimrc
     ~/.xinitrc: .xinitrc
     ~/.Xresources: .Xresources
     ~/.Xmodmap: .Xmodmap
     ~/.zshrc: .zshrc
     ~/.zsh: 
       path: .zsh/
-    ~/.config/:
+    ~/.config/picom.conf: config/picom.conf
+    ~/.config/bspwm/:
       glob: true
-      path: .config/*
-    
+      path config/bspwm/*
+    ~/.config/polybar/:
+      glob: true
+      path config/polybar/*
+    ~/.config/sxhkd/:
+      glob: true
+      path config/sxhkd/*
+
 - shell:
   - [git submodule update --init --recursive, updating submodules]
   - [sh ~/.zsh/zsh_plugins.sh, installing zsh plugins in ~/.zsh/plugins]
