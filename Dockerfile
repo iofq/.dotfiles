@@ -5,8 +5,7 @@ RUN apk update && \
   apk add --no-cache bash vim openssh curl zsh git tmux sudo 
 
 #dev
-RUN apk add ansible python3 npm nodejs
-RUN npm install -g corona-cli
+RUN apk add ansible python3 
 
 #net
 RUN apk add nmap 
