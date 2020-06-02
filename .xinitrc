@@ -43,7 +43,7 @@ session=${1:-bspwm}
 case $session in
 	awesome 		  ) exec dbus-launch --sh-syntax --exit-with-session awesome;;
 	gnome 			  ) exec dbus-launch --sh-syntax --exit-with-session gnome-session;;
-	bspwm 			  ) exec dbus-launch --sh-syntax --exit-with-session bspwm-session;;
+  bspwm         ) exec bspwm;;
   i3|i3wm           ) exec dbus-launch --sh-syntax --exit-with-session i3;;
   kde               ) exec dbus-launch --sh-syntax --exit-with-session startkde;;
   budgie            ) exec dbus-launch --sh-syntax --exit-with-session budgie-desktop;;
