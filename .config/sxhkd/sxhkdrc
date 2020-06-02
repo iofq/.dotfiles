@@ -41,7 +41,11 @@ super + f
 # Promote window (dwm style)
 super + p
   bspc node --swap biggest.local
-	
+
+super + g
+	{polybar-msg cmd hide; bspc config top_padding +0 ,\
+   polybar-msg cmd show; bspc config top_padding 26 }
+
 # Balance tree
 super + b
 	bspc node @/ -B
@@ -79,11 +83,8 @@ super + shift + p
 	firefox --private-window
 super + shift + f
 	firefox
-super + Escape
-	xtrlock
 
 super 
-
 
 # make sxhkd reload its configuration files:
 super + shift + Escape

@@ -40,8 +40,4 @@ bspc config split_ratio         0.50
 
 bspc monitor eDP1 -d i ii iii iv v vi vii 
 
-##Pseudo automatic mode: always splits focused window when opening new window
-bspc config external_rules_command /usr/bin/pseudo_automatic_mode
-
-sh ~/.config/polybar/launch.sh
 sh ~/.config/bspwm/autostart

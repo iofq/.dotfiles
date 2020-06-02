@@ -2,7 +2,7 @@ FROM alpine:latest
 
 #base
 RUN apk update && \
-  apk add --no-cache bash vim openssh curl zsh git tmux sudo 
+  apk add --no-cache bash vim openssh curl git tmux sudo 
 
 #dev
 RUN apk add --no-cache ansible python3 
@@ -16,7 +16,7 @@ RUN apk add --no-cache nmap
   #mv ./kubectl /usr/local/bin/kubectl
 
 # User setup
-RUN addgroup -S e && adduser -S e -G e -s /bin/zsh -h /home/e && \
+RUN addgroup -S e && adduser -S e -G e -s /bin/bash -h /home/e && \
   echo "e ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
   chown -R e:e /home/e
 
@@ -27,4 +27,4 @@ RUN cd && git clone https://github.com/iofq/.dotfiles && cd .dotfiles && ./insta
 
 EXPOSE 22
 ENV args="-c tmux"
-ENTRYPOINT exec zsh $args
+ENTRYPOINT exec bash $args

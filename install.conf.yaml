@@ -7,13 +7,9 @@
     ~/.bashrc: 
       path: .bashrc
       force: true
-    ~/.bash_aliases: .bash_aliases
     ~/.tmux.conf: .tmux.conf 
     ~/.vimrc: .vimrc
     ~/.xinitrc: .xinitrc
-    ~/.zshrc: .zshrc
-    ~/.zsh: 
-      path: .zsh/
     ~/.config/bspwm/:
       glob: true
       path: .config/bspwm/*
@@ -26,4 +22,3 @@
 
 - shell:
   - [git submodule update --init --recursive, updating submodules]
-  - [sh ~/.zsh/zsh_plugins.sh, installing zsh plugins in ~/.zsh/plugins]

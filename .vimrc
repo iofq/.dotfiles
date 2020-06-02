@@ -20,7 +20,7 @@ inoremap wq <Esc>l:w<CR>
 tnoremap wq <C-w>:q!<CR>
 vnoremap wq <Esc>l:w<CR>
 
-inoremap {<cr> {<cr>}<esc>o
+inoremap {<cr> {<cr>}<esc>O
 
 set completeopt=menu,longest 
 inoremap <expr> <Tab> TabComplete() 
