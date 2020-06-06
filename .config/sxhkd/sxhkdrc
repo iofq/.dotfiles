@@ -91,9 +91,9 @@ super + shift + Escape
 	pkill -USR1 -x sxhkd
 
 super + F6
-	xbacklight -dec 15
+	backlight -15
 super + F7
-    xbacklight -inc 15
+  backlight 15
 super + F8
 	amixer -c 0 set PCM toggle
 super + F9

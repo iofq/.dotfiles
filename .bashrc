@@ -5,7 +5,6 @@ PS1='\[\033[01;35m\][\u\[\033[01;36m\] \W\[\033[01;35m\]]\$\[\033[00m\] '
 xhost +local:root > /dev/null 2>&1
 
 shopt -s cmdhist
-shopt -s nocaseglob
 shopt -s globstar 2> /dev/null
 shopt -s expand_aliases 2> /dev/null
 shopt -s dirspell 2> /dev/null
@@ -39,7 +38,9 @@ alias ssh="export TERM=vt100 && ssh"      #compatibility
 alias gitu='git add . && git commit && git push'
 # cd && ls
 function cd {
-  builtin cd "$@" && ls
+  cm="ls"
+  which exa>/dev/null 2>&1 && cmd="exa"
+  builtin cd "$@" && $cmd
 }
 
 which exa 2>&1 >/dev/null && alias ls='exa'

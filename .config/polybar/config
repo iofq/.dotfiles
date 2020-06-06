@@ -17,7 +17,7 @@ DKRD =${xrdb:color1:#222}
 DKAQ =${xrdb:color1:#222}
 
 [bar/bar]
-monitor = eDP1
+monitor = eDP-1
 width = 1920
 height = 27
 fixed-center = true
