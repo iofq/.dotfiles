@@ -20,7 +20,7 @@ inoremap wq <Esc>l:w<CR>
 tnoremap wq <C-w>:q!<CR>
 vnoremap wq <Esc>l:w<CR>
 
-inoremap {<cr> {<cr>}<esc>O
+inoremap {<cr> {<cr>}<Esc>O
 
 set completeopt=menu,longest 
 inoremap <expr> <Tab> TabComplete() 
@@ -34,7 +34,7 @@ fun! TabComplete()
 endfun
 
 autocmd FileType python compiler pylint
-autocmd FileType python setlocal ts=4 sts=4 sw=4 " whitespace
+autocmd FileType python,c setlocal ts=4 sts=4 sw=4 " whitespace
 
 set hidden
 set number relativenumber

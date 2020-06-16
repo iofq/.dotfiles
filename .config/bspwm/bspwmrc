@@ -31,7 +31,7 @@ bspc config presel_feedback_color "$foreground"
 bspc config border_width 1
 
 bspc config focus_follows_pointer false
-bspc config pointer_follows_focus true
+bspc config pointer_follows_focus false
 bspc config click_to_focus button1 
 bspc config swallow_first_click false
 
