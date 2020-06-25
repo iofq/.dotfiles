@@ -16,9 +16,8 @@ let mapleader=" "
 let g:netrw_banner=0
 
 set pastetoggle=<F2>
-inoremap wq <Esc>l:w<CR>
-tnoremap wq <C-w>:q!<CR>
-vnoremap wq <Esc>l:w<CR>
+nnoremap gr gT
+nnoremap <Leader><Leader> <C-w>
 
 inoremap {<cr> {<cr>}<Esc>O
 

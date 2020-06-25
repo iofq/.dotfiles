@@ -1,27 +1,26 @@
 ﻿# Close window
 super + x
 	bspc node -c
+  
 #last desktop
 super + Tab
   bspc desktop -f last
 
-# Presel window for splitting in certain direction
-alt + ctrl + {h,j,k,l}
-	bspc node -p \~{west,south,north,east}
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
 super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} ^{1-9,10}
 
+# Presel window for splitting in certain direction
+alt + ctrl + {h,j,k,l}
+	bspc node -p \~{west,south,north,east}
+  
 #Focus windows by direction. use bspwm-scripts if you need multihead
 super + {_,shift + }{h,j,k,l}
-  bspc node -{f,s} {west,south,north,east}
-super + {_,shift + }{Left, Down, Up, Right}
   bspc node -{f,s} {west,south,north,east}
         	
 #resize windows
 super + alt + {h,j,k,l}
   bspwm-resize.sh {west,south,north,east}
-
 
 # Toggle tiling mode of window
 super + t
@@ -35,6 +34,7 @@ super + f
 super + p
   bspc node --swap biggest.local
 
+#hide bar
 super + g
 	{polybar-msg cmd hide; bspc config top_padding +0 ,\
    polybar-msg cmd show; bspc config top_padding 26 }
@@ -61,9 +61,9 @@ super + shift + n
   bspc node -f prev.local
 
 # minimize and restore
-super + c
+super + m
   minimize.sh
-super + shift + c
+super + shift + m
   restore.sh
 
 # Change window gap
@@ -72,10 +72,6 @@ super + alt + Up
 super + alt + Down
   bspc config -d focused window_gap 0
 
-~button1
-
-~button3
-	
 super + space
 	dmenu_run
 super + Return
@@ -83,16 +79,8 @@ super + Return
 super + z
 	st -e tmux
 
-# auto click from keyboard
-ctrl + shift + a 
-  cautoclick -p 420 -i 500 -r 100 -n 1000
-ctrl + shift + x
-  killall cautoclick
-
 super + shift + f
 	firefox
-
-super 
 
 # make sxhkd reload its configuration files:
 super + shift + Escape

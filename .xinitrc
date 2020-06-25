@@ -7,7 +7,6 @@ sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
 # merge in defaults and keymaps
-setxkbmap -layout us -option '' -option ctrl:nocaps
 [[ -f ~/.Xdefaults ]] && xrdb -merge ~/.Xdefaults
 [[ -f $sysresources ]] && xrdb -merge $sysresources
 [[ -f $sysmodmap ]] && xmodmap $sysmodmap

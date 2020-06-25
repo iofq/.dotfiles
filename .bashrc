@@ -30,15 +30,16 @@ bind "set menu-complete-display-prefix on"
 bind '"\t":menu-complete'
 
 # aliases
-alias cp="rsync -avh --progress"
 alias la='ls -lah'
 alias ..='cd ..'
 alias :q="exit"
 alias ssh="export TERM=vt100 && ssh"      #compatibility
 alias gitu='git add . && git commit && git push'
+which rsync 2>&1 && alias cp="rsync -avh --progress"
+
 # cd && ls
 function cd {
-  cm="ls"
+  cmd="ls"
   which exa>/dev/null 2>&1 && cmd="exa"
   builtin cd "$@" && $cmd
 }
