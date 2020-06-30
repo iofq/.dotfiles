@@ -17,6 +17,8 @@ alt + ctrl + {h,j,k,l}
 #Focus windows by direction. use bspwm-scripts if you need multihead
 super + {_,shift + }{h,j,k,l}
   bspc node -{f,s} {west,south,north,east}
+super + {_,shift + }{Left,Down,Up,Right}
+  bspc node -{f,s} {west,south,north,east}
         	
 #resize windows
 super + alt + {h,j,k,l}

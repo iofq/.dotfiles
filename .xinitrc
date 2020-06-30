@@ -14,11 +14,12 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 [[ -f "$usermodmap" ]] && xmodmap "$usermodmap"
 
 #userland
+xcape -e "Super_L=Escape"
 xset r rate 300 60
 xrandr --output eDP-1 --mode 1920x1080
 echo 80 > /sys/class/backlight/intel_backlight/brightness
 sxhkd &
-picom &
+picom --experimental-backends &
 redshift -l 43:-89 -t 6100k:3000k &
 
 #system-specific scripts

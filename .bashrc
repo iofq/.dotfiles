@@ -35,7 +35,7 @@ alias ..='cd ..'
 alias :q="exit"
 alias ssh="export TERM=vt100 && ssh"      #compatibility
 alias gitu='git add . && git commit && git push'
-which rsync 2>&1 && alias cp="rsync -avh --progress"
+which rsync 2>&1 >/dev/null && alias cp="rsync -avh --progress"
 
 # cd && ls
 function cd {
