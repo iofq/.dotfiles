@@ -33,7 +33,6 @@ bind '"\t":menu-complete'
 alias la='ls -lah'
 alias ..='cd ..'
 alias :q="exit"
-alias ssh="export TERM=vt100 && ssh"      #compatibility
 alias gitu='git add . && git commit && git push'
 which rsync 2>&1 >/dev/null && alias cp="rsync -avh --progress"
 
@@ -43,6 +42,14 @@ function cd {
   which exa>/dev/null 2>&1 && cmd="exa"
   builtin cd "$@" && $cmd
 }
+
+#change $TERM while we ssh for compatibility
+function ssh_compat {
+  OLDTERM=$TERM
+  export TERM=vt100
+  ssh $@ && export TERM=$OLDTERM
+}
+alias ssh="ssh_compat"
 
 which exa 2>&1 >/dev/null && alias ls='exa'
 
