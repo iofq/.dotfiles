@@ -18,7 +18,7 @@ HISTFILESIZE=50000
 set -o vi
 bind "set show-mode-in-prompt on"
 bind "set vi-ins-mode-string "
-bind "set vi-cmd-mode-string \033[01;31mN"
+bind "set vi-cmd-mode-string \033[01;31mN "
 
 # tab completion
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
@@ -47,7 +47,7 @@ function cd {
 function ssh_compat {
   OLDTERM=$TERM
   export TERM=vt100
-  ssh $@ && export TERM=$OLDTERM
+  ssh $@ && export TERM=$OLDTERM && unset OLDTERM
 }
 alias ssh="ssh_compat"
 

@@ -47,6 +47,7 @@ label-foreground = ${colors.BRBR}
 
 [module/bspwm]
 type = internal/bspwm
+pin-workspaces = true
 format-prefix = 
 ;format-prefix-underline = ${colors.BRAQ}
 format-suffix = 
