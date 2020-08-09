@@ -1,12 +1,12 @@
  .dotfiles
 ======
-### personal dotfiles for bspwm, managed with Dotbot.
+### personal dotfiles for bspwm
 
 
 #### installing:
 
 ```bash
-cd && git clone https://github.com/iofq/.dotfiles && cd .dotfiles && ./install
+cd && git clone https://github.com/iofq/.dotfiles && cd .dotfiles && ./install 
 ```
 
 #### alternatively, run in docker:

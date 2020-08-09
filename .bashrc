@@ -31,7 +31,7 @@ bind "set menu-complete-display-prefix on"
 bind '"\t":menu-complete'
 
 # aliases
-alias la='ls -lah'
+alias la='/bin/ls -lah'
 alias ..='cd ..'
 alias :q="exit"
 alias gitu='git add . && git commit && git push'
