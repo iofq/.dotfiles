@@ -2,6 +2,7 @@
 
 [[ $- != *i* ]] && return
 PS1='\[\033[01;35m\][\u\[\033[01;36m\] \W\[\033[01;35m\]]\$\[\033[00m\] '
+export PATH=~/.bin:$PATH
 xhost +local:root > /dev/null 2>&1
 
 shopt -s cmdhist

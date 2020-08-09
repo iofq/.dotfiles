@@ -1,0 +1,69 @@
+#!/bin/bash
+
+EXPAND_TO=$HOME
+SET_IGNORE="Dockerfile README.md expand scrot.png"
+
+main() {
+  IGNORE=" $(basename $0) .gitignore ${SET_IGNORE}" #prepend default ignore values
+  IGNORE=$(echo "$IGNORE" | sed "s/ / ! -wholename .\//g")
+  for f in $(find . -type f -not -path "./.git/*" $IGNORE ); do
+    if [[ $UNLINK == 1 ]]; then
+      unlink $f
+    else
+      link $f
+    fi
+  done
+  [[ $UNLINK == 1 ]] && find $EXPAND_TO -depth -type d -not -path "$EXPAND_TO" -exec rmdir {} 2>&1 >/dev/null \; 
+}
+
+link() {
+  echo $1 "->" $EXPAND_TO/"${1#./}"
+  [[ $(dirname $1) != "." ]] && \
+    mkdir -p $EXPAND_TO/$(dirname $1)
+  [[ $FORCE_LINK == 1 ]] && \
+    rm -f $EXPAND_TO/"${1#./}"
+  ln -s $(realpath $1) $EXPAND_TO/"${1#./}" || { echo "Try again with -f (force)?" && exit 1; }
+}
+
+unlink() {
+  rm -f $EXPAND_TO/"${1#./}"
+  echo "rm    " $EXPAND_TO/"${1#./}"
+  [ "$(dirname $1)" != "." ] && [ -z "$(/bin/ls -A $EXPAND_TO/$(dirname $1))" ] && \
+    rmdir $EXPAND_TO/$(dirname $1) && echo "rmdir " $EXPAND_TO/$(dirname $1)
+}
+
+set_ignore() {
+  sed -i "s:^SET_IGNORE=.*:SET_IGNORE=\"$(echo $@)\":" $0
+  echo "currently ignored files: $(basename $0) .git/* $@"
+  exit 0
+}
+
+usage() {
+  printf "usage: expand [-f] [-u] 
+                 expand [i] (files to ignore)\n
+expand -- dotfile management script. creates symbolic links in a target directory following the structure of the current directory.\n
+optional arguments:
+  -h        (help) show this help message and exit.
+  -f        (force) deletes file at a location before replacing with a symbolic link.
+  -u        (unlink) removes symbolic links. will remove empty directories.
+  -i        (ignore) space delimted list of files to ignore when linking.
+            gets stored as a environment variable between runs.
+            (or you can edit SET_IGNORE variable in the script!)
+              - ex: -i file1 dir/* dir/file2\n" && exit 0
+}
+
+while getopts ufhi: option
+do
+  case "${option}"
+    in
+    u) UNLINK=1;;
+    f) FORCE_LINK=1;;
+    h) usage;;
+    i) shift
+       set_ignore $@;;
+    *) usage;;
+  esac
+done
+
+main
+exa -la /home/test #DEBUG
