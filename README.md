@@ -1,6 +1,6 @@
  .dotfiles
 ======
-### personal dotfiles for bspwm
+### personal dotfiles: spectrwm, vim, bash
 
 
 #### installing:
