@@ -4,4 +4,4 @@ qemu-system-x86_64 \
   -cpu host \
   -m 4096 \
   -drive file=/vm/$1.qcow2 \
-  -vga qxl
+  -vga qxl &disown

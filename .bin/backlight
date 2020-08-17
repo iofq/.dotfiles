@@ -2,7 +2,7 @@
 CURRENT=$(cat /sys/class/backlight/intel_backlight/brightness)
 NEW=$(( $CURRENT + $1)) 
 
-(( $NEW > 100 )) && NEW=100
+(( $NEW > 187 )) && NEW=187
 (( $NEW < 0 )) && NEW=0
 
 echo $NEW > /sys/class/backlight/intel_backlight/brightness

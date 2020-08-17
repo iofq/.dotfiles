@@ -42,7 +42,7 @@ cpu() {
 
 # user is already defined
 host="$(hostname)"
-os='Manjaro'
+os='Arch'
 kernel="$(uname -sr)"
 uptime="$(uptime -p | sed 's/up //')"
 packages="$(pacman -Q | wc -l)"
@@ -74,7 +74,6 @@ else
 fi
 
 ##hardcode because our .xinitrc doesn't end like exec wm
-ui='bspwm'
 
 ## DEFINE COLORS
 
@@ -100,9 +99,8 @@ c0="${reset}${magenta}"               # first color
 
 ## OUTPUT
 clear
-  cat <<EOF
-
-  ${c0}${nc}${USER}${ic}@${nc}${host}${reset}
+cat <<EOF
+${c0}${nc}${USER}${ic}@${nc}${host}${reset}
   ${c0}${lc}OS:        ${ic}${os}${reset}
   ${c0}${lc}KERNEL:    ${ic}${kernel}${reset}
   ${c0}${lc}UPTIME:    ${ic}${uptime}${reset}
@@ -110,4 +108,4 @@ clear
   ${c0}${lc}SHELL:     ${ic}${shell}${reset}
   ${c0}${lc}${uitype}:        ${ic}${ui}${reset}
 
-  EOF
+EOF

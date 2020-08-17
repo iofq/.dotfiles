@@ -19,6 +19,8 @@ xcape -e "Super_L=Escape"
 xset r rate 300 60
 xrandr --output eDP-1 --mode 1920x1080
 walbg /home/pape base16-flat
+picom --experimental-backends &
+redshift -l 43:-89 -t 6100k:3000k &
 
 #system-specific scripts
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
@@ -27,6 +29,5 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     done
     unset f
 fi
-if [ $TERM = linux ] || [ -e "/etc/systemd/system/graphical.target.wants/xlogin@$(whoami).service" ] ; then
+
 exec spectrwm
-fi
