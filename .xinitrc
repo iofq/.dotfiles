@@ -19,7 +19,7 @@ xcape -e "Super_L=Escape"
 xset r rate 300 60
 xrandr --output eDP-1 --mode 1920x1080
 walbg /home/pape base16-flat
-picom --experimental-backends &
+picom --experimental-backends -b 
 redshift -l 43:-89 -t 6100k:3000k &
 
 #system-specific scripts
