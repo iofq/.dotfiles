@@ -100,7 +100,7 @@ c0="${reset}${magenta}"               # first color
 ## OUTPUT
 clear
 cat <<EOF
-${c0}${nc}${USER}${ic}@${nc}${host}${reset}
+  ${c0}${nc}${USER}${ic}@${nc}${host}${reset}
   ${c0}${lc}OS:        ${ic}${os}${reset}
   ${c0}${lc}KERNEL:    ${ic}${kernel}${reset}
   ${c0}${lc}UPTIME:    ${ic}${uptime}${reset}

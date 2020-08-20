@@ -14,7 +14,7 @@
  }
 
 temp() {
-  TEMP=$(cat /sys/class/thermal/thermal_zone6/temp)
+  TEMP=$(cat /sys/class/thermal/thermal_zone7/temp)
   echo $((TEMP / 1000))
 }
 
@@ -23,19 +23,31 @@ mem() {
 }
 
 cpu() {
-  read cpu a b c previdle rest < /proc/stat
-  prevtotal=$((a+b+c+previdle))
-  sleep 0.5
+  read prevtotal previdle < /tmp/cpu
   read cpu a b c idle rest < /proc/stat
   total=$((a+b+c+idle))
   cpu=$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))
   echo "$cpu%"
+  echo $total $idle > /tmp/cpu
 }
 
-SLEEP_SEC=3
+ip() {
+  echo "$(curl ifconfig.io)"
+}
+
+wifi() {
+  cat /tmp/wifi
+}
+
+wttr() {
+  cat /tmp/wttr
+}
+
+SLEEP_SEC=2
 PAD=" | "
+killall update.sh; $HOME/.bin/update.sh &
 while true; do
-  echo "$(mem)G$PAD$(cpu)$PAD$(temp)°C$PAD$(bat)$PAD"
+ echo "$(mem)G$PAD$(cpu)$PAD$(wifi)$PAD$(temp)°C$PAD$(bat)$PAD$(wttr)$PAD"
  sleep $SLEEP_SEC
 done
 
