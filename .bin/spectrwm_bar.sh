@@ -14,7 +14,7 @@
  }
 
 temp() {
-  TEMP=$(cat /sys/class/thermal/thermal_zone7/temp)
+  TEMP=$(cat /sys/class/thermal/thermal_zone0/temp)
   echo $((TEMP / 1000))
 }
 
@@ -40,14 +40,14 @@ wifi() {
 }
 
 wttr() {
-  cat /tmp/wttr
+  cat /tmp/wttr | head -c 7
 }
 
 SLEEP_SEC=2
 PAD=" | "
 killall update.sh; $HOME/.bin/update.sh &
 while true; do
- echo "$(mem)G$PAD$(cpu)$PAD$(wifi)$PAD$(temp)°C$PAD$(bat)$PAD$(wttr)$PAD"
+ echo "$(mem)G$PAD$(cpu)$PAD$(temp)°C$PAD$(wttr)$PAD"
  sleep $SLEEP_SEC
 done
 
