@@ -3,6 +3,7 @@
 [[ $- != *i* ]] && return
 export PS1="\[\033[38;5;5m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;2m\]\W\[$(tput sgr0)\]\[\033[38;5;5m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;2m\]\\$\[$(tput sgr0)\] "
 export PATH=~/.bin:$PATH
+export EDITOR=vim
 xhost +local:root > /dev/null 2>&1
 
 shopt -s cmdhist
@@ -55,5 +56,27 @@ alias ssh="ssh_compat"
 which exa 2>&1 >/dev/null && alias ls='exa'
 
 which 'fzf' 2>&1 >/dev/null && \
-  source /usr/share/doc/fzf/examples/key-bindings.bash && \
   source /usr/share/doc/fzf/examples/completion.bash
+
+__fzfcmd() {
+  [ -n "$TMUX_PANE" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "$FZF_TMUX_OPTS" ]; } &&
+    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
+}
+__fzf_history__() {
+  local output
+  output=$(
+    builtin fc -lnr -2147483648 |
+      last_hist=$(HISTTIMEFORMAT='' builtin history 1) perl -n -l0 -e 'BEGIN { getc; $/ = "\n\t"; $HISTCMD = $ENV{last_hist} + 1 } s/^[ *]//; print $HISTCMD - $. . "\t$_" if !$seen{$_}++' |
+      FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS +m --read0" $(__fzfcmd) --query "$READLINE_LINE"
+  ) || return
+  READLINE_LINE=${output#*$'\t'}
+  if [ -z "$READLINE_POINT" ]; then
+    echo "$READLINE_LINE"
+  else
+    READLINE_POINT=0x7fffffff
+  fi
+}
+# CTRL-R - Paste the selected command from history into the command line
+  bind -m emacs-standard -x '"\C-r": __fzf_history__'
+  bind -m vi-command -x '"\C-r": __fzf_history__'
+  bind -m vi-insert -x '"\C-r": __fzf_history__'

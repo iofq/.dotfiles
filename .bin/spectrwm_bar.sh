@@ -7,8 +7,8 @@
    echo "$battery%$charge"
  }
 
- date() {
- 	FORMAT="%R"
+ time_date() {
+ 	FORMAT="%a %m.%d.%y %T"
  	DATE=`date "+${FORMAT}"`
  	echo "${DATE}"
  }
@@ -43,11 +43,11 @@ wttr() {
   cat /tmp/wttr | head -c 7
 }
 
-SLEEP_SEC=2
+SLEEP_SEC=1
 PAD=" | "
 killall update.sh; $HOME/.bin/update.sh &
 while true; do
- echo "$(mem)G$PAD$(cpu)$PAD$(temp)°C$PAD$(wttr)$PAD"
- sleep $SLEEP_SEC
+  xsetroot -name "  $(mem)G$PAD$(cpu)$PAD$(temp)°C$PAD$(wttr)$PAD$(date)  "
+  sleep $SLEEP_SEC
 done
 

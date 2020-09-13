@@ -1,0 +1,17 @@
+#!/bin/sh
+
+xsetroot -cursor_name left_ptr &
+setxkbmap -option "caps:super"
+xcape -e "Super_L=Escape"
+xset r rate 300 60
+# sh $HOME/.bin/spectrwm_bar.sh
+
+while true; do
+  # Log stderror to a file 
+  dwm >> ~/.dwm.log
+  picom -b \
+    --vsync \
+    --experimental-backends \
+    --unredir-if-possible
+done
+

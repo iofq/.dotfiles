@@ -66,4 +66,3 @@ do
 done
 
 main
-exa -la /home/test #DEBUG

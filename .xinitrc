@@ -5,8 +5,6 @@ userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
-
-# merge in defaults and keymaps
 [[ -f ~/.Xdefaults ]] && xrdb -merge ~/.Xdefaults
 [[ -f $sysresources ]] && xrdb -merge $sysresources
 [[ -f $sysmodmap ]] && xmodmap $sysmodmap
@@ -14,21 +12,7 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 [[ -f "$usermodmap" ]] && xmodmap "$usermodmap"
 
 #userland
-xsetroot -cursor_name left_ptr &
-setxkbmap -option "caps:super"
-xcape -e "Super_L=Escape"
-xset r rate 300 60
-xrandr --output DP-1 --mode 1920x1080
+xrandr --output DP-1 --mode 1920x1080 --primary
 walbg /home/pape base16-flat
-picom --experimental-backends -b 
-redshift -l 43:-89 -t 6100k:3000k &
-
-#system-specific scripts
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
-    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-        [ -x "$f" ] && . "$f"
-    done
-    unset f
-fi
-
-exec spectrwm
+redshift -l 43:-89 -t 6100k:3400k &
+autorun
