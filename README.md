@@ -1,6 +1,6 @@
  .dotfiles
 ======
-### personal dotfiles: spectrwm, vim, bash
+### personal dotfiles: vim, tmux, bash, dwm
 
 
 #### installing:
