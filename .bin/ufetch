@@ -64,6 +64,8 @@ lc="${reset}${bold}${red}"          # labels
 nc="${reset}${bold}${red}"          # user and hostname
 ic="${reset}"                       # info
 c0="${reset}${red}"                 # first color
+#OVERRIDE UI
+ui="dwm"
 
 ## OUTPUT
 

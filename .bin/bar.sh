@@ -47,7 +47,7 @@ SLEEP_SEC=1
 PAD=" | "
 killall update.sh; $HOME/.bin/update.sh &
 while true; do
-  xsetroot -name "  $(mem)G$PAD$(cpu)$PAD$(temp)°C$PAD$(wttr)$PAD$(date)  "
+  xsetroot -name "  $(mem)G$PAD$(cpu)$PAD$(temp)°C$PAD$(wttr)$PAD$(time_date)  "
   sleep $SLEEP_SEC
 done
 
