@@ -52,8 +52,8 @@ function ssh_compat {
 }
 alias ssh="ssh_compat"
 
-which exa 2>&1 >/dev/null && alias ls='exa'
-
-which 'fzf' 2>&1 >/dev/null && \
+which exa 2>&1 > /dev/null && alias ls='exa'
+ls -la > /dev/null 
+which 'fzf' 2>&1 > /dev/null && \
   source /usr/share/fzf/key-bindings.bash && \
   source /usr/share/fzf/completion.bash

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+xsetroot -cursor_name left_ptr &
+xcape -e "Super_L=Escape"
+xset r rate 300 60
+xset s off
+xset s noblank
+xset -dpms
+xrandr --output eDP-1 --mode 1920x1080
+
+wal --theme base16-flat -b "#000000"
+feh --bg-scale /home/pape
+redshift -l 43:-89 -t 6100k:3000k &
+sh $HOME/.bin/bar.sh &
+
+while true; do
+  picom -GCb --config /dev/null \
+    --vsync \
+    --experimental-backends \
+    --unredir-if-possible
+  dwm 2> ~/.dwm.log
+done
+
