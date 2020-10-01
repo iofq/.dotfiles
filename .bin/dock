@@ -1,0 +1,9 @@
+#!/bin/sh
+
+POINTER=$(xinput list | grep -F "Logitech G203 Prodigy Gaming Mouse  " | awk '{print $8}' | cut -c 4-)
+DISPLAY=$(xrandr -q  | grep "^DP-. connected" | awk '{print $1}')
+mount /sd
+xinput set-button-map $POINTER 1 2 3 5 4 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 
+xrandr --output eDP-1 --mode 1600x900
+xrandr --output DP-1 --auto --right-of eDP-1
+feh --bg-scale /home/pape

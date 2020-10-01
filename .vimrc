@@ -23,6 +23,8 @@ nnoremap gr gT
 nnoremap <Leader><Leader> <C-w>
 
 inoremap {<cr> {<cr>}<Esc>O
+nnoremap <silent> [<space>  :<c-u>put!=repeat([''],v:count)<bar>']+1<cr>
+nnoremap <silent> ]<space>  :<c-u>put =repeat([''],v:count)<bar>'[-1<cr><Esc>
 
 set completeopt=menu,longest 
 inoremap <expr> <Tab> TabComplete() 

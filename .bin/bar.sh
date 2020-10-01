@@ -1,5 +1,7 @@
+calc(){ awk "BEGIN { print "$*" }"; }
+
 temp_update() {
-  TEMP=$(cat /sys/class/thermal/thermal_zone7/temp)
+  TEMP=$(cat /sys/class/thermal/thermal_zone8/temp)
   echo $((TEMP / 1000)) > /tmp/.temp
 }
 
@@ -12,9 +14,14 @@ cpu_update() {
   echo $total $idle > /tmp/.cpulast
 }
 
+mhz_update() {
+  mhz=$(cat /proc/cpuinfo | grep 'cpu MHz' | awk '{print $4}' | head -n1 | cut -d "." -f 1)
+  echo "$(calc $mhz/1000 | awk '{ printf "%1.2f\n", $0 }') GHz" > /tmp/.mhz
+}
+
 bat() {
    battery="$(cat /sys/class/power_supply/BAT0/capacity)"
-   time=$(cat /tmp/battime)
+   time=$(cat /tmp/.battime)
    if [[ $(cat /sys/class/power_supply/BAT0/status) == "Charging" ]]; then
      echo "$battery%+"
    else
@@ -45,6 +52,7 @@ update_3() {
   while true; do
     cpu_update
     temp_update
+    mhz_update
     sleep 3
   done
 }
@@ -54,7 +62,7 @@ PAD=" | "
 update_20 &
 update_3 &
 while true; do
-  xsetroot -name "$(mem)G$PAD$(cat /tmp/.cpu)$PAD$(cat /tmp/.wifi)$PAD$(cat /tmp/.temp)°C$PAD$(bat)$PAD$(cat /tmp/.wttr)$PAD$(time_date)"
+  xsetroot -name "$(mem)G$PAD$(cat /tmp/.cpu)$PAD$(cat /tmp/.mhz)$PAD$(cat /tmp/.temp)°C$PAD$(cat /tmp/.wifi)$PAD$(bat)$PAD$(cat /tmp/.wttr)$PAD$(time_date)"
   sleep $SLEEP_SEC
 done
 

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if (( $1 == 0 )); then
+  amixer set Master toggle
+elif (( $1 > 0 )); then
+  amixer set Master $1%+ unmute
+else
+  amixer set Master $(echo $1 | tr -d -)%- unmute
+fi
