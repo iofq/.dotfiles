@@ -45,6 +45,7 @@ set number relativenumber
 set syntax=on
 set showmatch
 set cursorline
+set splitbelow splitright
 set visualbell t_vb=
 
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
