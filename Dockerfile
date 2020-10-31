@@ -5,9 +5,7 @@ RUN apk update && \
   apk add --no-cache bash vim openssh curl git tmux sudo 
 
 #dev
-RUN apk add --no-cache ansible python3 py3-pip
-
-RUN pip install virtualenv pytest
+RUN apk add --no-cache python3 py3-pip
 
 # User setup
 RUN addgroup -S e && adduser -S e -G e -s /bin/bash -h /home/e && \
