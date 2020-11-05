@@ -5,8 +5,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-surround' "yss( ysiw( cs(' ds' 
-Plug 'tpope/vim-commentary' "gcc Vgc 
+Plug 'tpope/vim-surround' "yss( ysiw( cs(' ds'
+Plug 'tpope/vim-commentary' "gcc Vgc
 Plug 'wellle/targets.vim' " ci) cin( cin' di. dia dib
 Plug 'Yggdroot/indentLine' " display indents :IndentLineToggle
 Plug 'iofq/py.vim'
@@ -26,8 +26,8 @@ inoremap {<cr> {<cr>}<Esc>O
 nnoremap <silent> [<space>  :<c-u>put!=repeat([''],v:count)<bar>']+1<cr>
 nnoremap <silent> ]<space>  :<c-u>put =repeat([''],v:count)<bar>'[-1<cr><Esc>
 
-set completeopt=menu,longest 
-inoremap <expr> <Tab> TabComplete() 
+set completeopt=menu,longest
+inoremap <expr> <Tab> TabComplete()
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 fun! TabComplete()
     if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
@@ -37,6 +37,13 @@ fun! TabComplete()
     endif
 endfun
 
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    keepp %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd FileType python,c,go,bash autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 autocmd FileType python compiler pylint
 autocmd FileType python,c setlocal ts=4 sts=4 sw=4 " whitespace
 
