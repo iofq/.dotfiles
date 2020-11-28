@@ -52,7 +52,7 @@ function ssh_compat {
 alias ssh="ssh_compat"
 
 which exa 2>&1 > /dev/null && alias ls='exa'
-if [[ $(which 'fzf' 2>&1 > /dev/null) ]]; then
+if [[ $(which 'fzf' 2>&1) ]]; then
   [ -r /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
   [ -r /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
   [ -r /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
