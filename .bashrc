@@ -4,8 +4,8 @@
 function prompt_command {
   GIT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null )
   [[ $GIT_BRANCH != '' ]] && \
-  PS1="\[\033[38;5;5m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;2m\]\W\[$(tput sgr0)\]\[\033[38;5;5m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;3m\]($GIT_BRANCH)\033[38;5;2m\]\$\[$(tput sgr0)\] " || \
-  PS1="\[\033[38;5;5m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;2m\]\W\[$(tput sgr0)\]\[\033[38;5;5m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;3m\]\033[38;5;2m\]\$\[$(tput sgr0)\] "
+  PS1="\[\033[38;5;5m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;2m\]\W\[$(tput sgr0)\]\[\033[38;5;5m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;3m\]($GIT_BRANCH)\[\033[38;5;2m\]\$\[$(tput sgr0)\] " || \
+  PS1="\[\033[38;5;5m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;2m\]\W\[$(tput sgr0)\]\[\033[38;5;5m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;3m\]\[\033[38;5;2m\]\$\[$(tput sgr0)\] "
 }
 PROMPT_COMMAND='prompt_command;history -a'
 export PATH=~/.bin:$PATH
@@ -33,6 +33,7 @@ bind '"\ev":edit-and-execute-command' #alt-v edit in $EDITOR
 alias la='/bin/ls -lah --color=auto'
 alias :q="exit"
 alias gitu='git add . && git commit && git push'
+alias aur="yay -Slq | fzf -m --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk \"{print\$2}\")' | xargs -ro yay -S"
 which rsync 2>&1 >/dev/null && alias cp="rsync -avh --progress"
 
 # cd && ls
@@ -46,11 +47,14 @@ function cd {
 function ssh_compat {
   OLDTERM=$TERM
   export TERM=vt100
-  ssh $@ && export TERM=$OLDTERM && unset OLDTERM
+  ssh $@; export TERM=$OLDTERM; unset OLDTERM
 }
 alias ssh="ssh_compat"
 
 which exa 2>&1 > /dev/null && alias ls='exa'
-which 'fzf' 2>&1 > /dev/null && \
-  source /usr/share/fzf/key-bindings.bash && \
-  source /usr/share/fzf/completion.bash
+if [[ $(which 'fzf' 2>&1 > /dev/null) ]]; then
+  [ -r /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
+  [ -r /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+  [ -r /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
+  [ -r /usr/share/doc/fzf/examples/completion.bash ] && source /usr/share/doc/fzf/examples/completion.bash
+fi

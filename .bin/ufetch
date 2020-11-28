@@ -74,6 +74,7 @@ else
 fi
 
 ##hardcode because our .xinitrc doesn't end like exec wm
+ui="dwm"
 
 ## DEFINE COLORS
 
