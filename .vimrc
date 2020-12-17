@@ -14,6 +14,7 @@ call plug#end()
 
 let mapleader=" "
 let g:netrw_banner=0
+let g:netrw_liststyle=3
 
 set pastetoggle=<F2>
 inoremap wq <Esc>l:w<CR>

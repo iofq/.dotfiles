@@ -10,7 +10,7 @@ function prompt_command {
 PROMPT_COMMAND='prompt_command;history -a'
 export PATH=~/.bin:$PATH
 export EDITOR=vim
-xhost +local:root > /dev/null 2>&1
+xhost +local:root > /dev/null 2&>1
 
 shopt -s cmdhist
 shopt -s globstar 2> /dev/null
@@ -33,13 +33,14 @@ bind '"\ev":edit-and-execute-command' #alt-v edit in $EDITOR
 alias la='/bin/ls -lah --color=auto'
 alias :q="exit"
 alias gitu='git add . && git commit && git push'
-alias aur="yay -Slq | fzf -m --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk \"{print\$2}\")' | xargs -ro yay -S"
-which rsync 2>&1 >/dev/null && alias cp="rsync -avh --progress"
+alias aur="paru -Slq | fzf -m --preview 'cat <(paru -Si {1}) <(paru -Fl {1} | awk \"{print\$2}\")' | xargs -ro paru -S"
+alias aurns="paru -Qq | fzf -m --preview 'cat <(paru -Si {1}) <(paru -Fl {1} | awk \"{print\$2}\")' | xargs -ro paru -Rns"
+which rsync 2&>1 >/dev/null && alias cp="rsync -avh --progress"
 
 # cd && ls
 function cd {
   cmd="ls"
-  which exa>/dev/null 2>&1 && cmd="exa"
+  which exa>/dev/null 2&>1 && cmd="exa"
   builtin cd "$@" && $cmd
 }
 
@@ -51,8 +52,8 @@ function ssh_compat {
 }
 alias ssh="ssh_compat"
 
-which exa 2>&1 > /dev/null && alias ls='exa'
-if [[ $(which 'fzf' 2>&1) ]]; then
+which exa 2&>1 > /dev/null && alias ls='exa'
+if [[ $(which 'fzf' 2&>1) ]]; then
   [ -r /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
   [ -r /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
   [ -r /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash
