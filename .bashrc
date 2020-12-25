@@ -17,8 +17,8 @@ shopt -s globstar 2> /dev/null
 shopt -s dirspell 2> /dev/null
 shopt -s cdspell 2> /dev/null
 shopt -s histappend 2> /dev/null
-HISTSIZE=1000
-HISTFILESIZE=9999
+HISTSIZE=9001
+HISTFILESIZE=99999
 
 # tab completion
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
@@ -33,8 +33,8 @@ bind '"\ev":edit-and-execute-command' #alt-v edit in $EDITOR
 alias la='/bin/ls -lah --color=auto'
 alias :q="exit"
 alias gitu='git add . && git commit && git push'
-alias aur="paru -Slq | fzf -m --preview 'cat <(paru -Si {1}) <(paru -Fl {1} | awk \"{print\$2}\")' | xargs -ro paru -S"
-alias aurns="paru -Qq | fzf -m --preview 'cat <(paru -Si {1}) <(paru -Fl {1} | awk \"{print\$2}\")' | xargs -ro paru -Rns"
+alias aur="paru -Slq | fzf -m --preview 'paru -Si {1}' | xargs -ro paru -S"
+alias aurns="paru -Qq | fzf -m --preview 'paru -Si {1}' | xargs -ro paru -Rns"
 which rsync > /dev/null 2>&1 alias cp="rsync -avh --progress"
 
 # cd && ls
@@ -53,7 +53,8 @@ function ssh_compat {
 alias ssh="ssh_compat"
 
 which exa > /dev/null 2>&1 && alias ls='exa'
-if [[ $(which 'fzf' > /dev/null 2>&1) ]]; then
+if which 'fzf' > /dev/null 2>&1; then
+  FZF_CTRL_T_COMMAND="command find -L . -mindepth 1 -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -prune"
   [ -r /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
   [ -r /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
   [ -r /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash

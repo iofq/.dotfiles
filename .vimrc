@@ -46,7 +46,8 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 autocmd FileType python,c,go,bash autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 autocmd FileType python compiler pylint
-autocmd FileType python,c setlocal ts=4 sts=4 sw=4 " whitespace
+autocmd FileType python,c,bash,text setlocal ts=4 sts=4 sw=4 " whitespace
+autocmd FileType text setlocal spell spelllang=en_us " {[,]}s to jump, z= to correct
 
 set hidden
 set number relativenumber

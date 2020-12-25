@@ -13,8 +13,10 @@ RUN addgroup -S e && adduser -S e -G e -s /bin/bash -h /home/e && \
   chown -R e:e /home/e
 
 USER e
-RUN cd && git clone https://github.com/iofq/.dotfiles && cd .dotfiles && ./install -f && \
-    ssh-keygen -f ~/.ssh/id_rsa -N "" >/dev/null
+RUN cd && git clone https://github.com/iofq/.dotfiles && \ 
+  cd .dotfiles && \
+  ./install -f && \
+  ssh-keygen -f ~/.ssh/id_rsa -N "" >/dev/null
 
 ENV args="-c tmux new-session -s e -d"
 ENTRYPOINT exec bash $args

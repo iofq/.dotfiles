@@ -1,7 +1,7 @@
 #!/bin/bash
 
 EXPAND_TO=$HOME
-SET_IGNORE="Dockerfile README.md expand scrot.png"
+SET_IGNORE="Dockerfile README.md install scrot.png"
 
 main() {
   IGNORE=" $(basename $0) .gitignore ${SET_IGNORE}" #prepend default ignore values
@@ -14,6 +14,7 @@ main() {
     fi
   done
   [[ $UNLINK == 1 ]] && find $EXPAND_TO -depth -type d -not -path "$EXPAND_TO" -exec rmdir {} 2>&1 >/dev/null \; 
+  exit 0
 }
 
 link() {
