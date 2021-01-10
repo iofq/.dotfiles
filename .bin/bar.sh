@@ -23,6 +23,15 @@ mem() {
   echo "scale=2; $(free -m | sed -n 2p | awk '{print $3 + $5}') / 1000" | bc
 }
 
+vol() {
+    muted=$(amixer get Master | grep off)
+    if [[ $muted != "" ]]; then
+        echo "muted"
+    else
+        amixer get Master | grep -m1 -Po "\d{1,3}%"
+    fi
+}
+
 temp_update() {
   TEMP=$(cat /sys/class/thermal/thermal_zone8/temp)
   echo $((TEMP / 1000)) 
@@ -71,6 +80,6 @@ PAD=" | "
 update_20 &
 update_3 &
 while true; do
-  xsetroot -name "$(mem)G$PAD$(cat /tmp/.cpu)$PAD$(cat /tmp/.mhz)$PAD$(cat /tmp/.temp)°C$PAD$(cat /tmp/.wifi)$PAD$(cat /tmp/.online)$PAD$(bat)$PAD$(cat /tmp/.wttr)$PAD$(time_date)"
+    xsetroot -name "$(mem)G$PAD$(cat /tmp/.cpu)$PAD$(cat /tmp/.mhz)$PAD$(cat /tmp/.temp)°C$PAD$(cat /tmp/.wifi), $(cat /tmp/.online)$PAD$(vol)$PAD$(bat)$PAD$(cat /tmp/.wttr), $(time_date)"
   sleep $SLEEP_SEC
 done

@@ -1,0 +1,42 @@
+*foreground:        #e0e0d0
+*background:        #000000
+*.foreground:       #e0e0d0
+*.background:       #000000
+
+! Colors 0-15.
+*.color0: #000000
+*color0:  #000000
+*.color1: #af5f00
+*color1:  #af5f00
+*.color2: #5faf5f
+*color2:  #5faf5f
+*.color3: #d7af00
+*color3:  #d7af00
+*.color4: #5fafff
+*color4:  #5fafff
+*.color5: #af5fd7
+*color5:  #af5fd7
+*.color6: #008cac
+*color6:  #008cac
+*.color7: #e0e0d0
+*color7:  #e0e0d0
+*.color8: #95A5A6
+*color8:  #95A5A6
+*.color9: #af5f00
+*color9:  #af5f00
+*.color10: #5faf5f
+*color10:  #5faf5f
+*.color11: #d7af00
+*color11:  #d7af00
+*.color12: #5fafff
+*color12:  #5fafff
+*.color13: #af5fd7
+*color13:  #af5fd7
+*.color14: #00afd7
+*color14:  #00afd7
+*.color15: #ECF0F1
+*color15:  #ECF0F1
+
+! Black color that will not be affected by bold highlighting.
+*.color66: #000000
+*color66:  #000000

@@ -4,8 +4,8 @@
 function prompt_command {
   GIT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null )
   [[ $GIT_BRANCH != '' ]] && \
-  PS1="\[\033[38;5;5m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;2m\]\W\[$(tput sgr0)\]\[\033[38;5;5m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;3m\]($GIT_BRANCH)\[\033[38;5;2m\]\$\[$(tput sgr0)\] " || \
-  PS1="\[\033[38;5;5m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;2m\]\W\[$(tput sgr0)\]\[\033[38;5;5m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;3m\]\[\033[38;5;2m\]\$\[$(tput sgr0)\] "
+  PS1="\[\033[38;5;4m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;5m\]\W\[$(tput sgr0)\]\[\033[38;5;4m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;3m\]($GIT_BRANCH)\[\033[38;5;5m\]\$\[$(tput sgr0)\] " || \
+  PS1="\[\033[38;5;4m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;5m\]\W\[$(tput sgr0)\]\[\033[38;5;4m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;3m\]\[\033[38;5;5m\]\$\[$(tput sgr0)\] "
 }
 PROMPT_COMMAND='prompt_command;history -a'
 export PATH=~/.bin:$PATH
@@ -35,12 +35,12 @@ alias :q="exit"
 alias gitu='git add . && git commit && git push'
 alias aur="paru -Slq | fzf -m --preview 'paru -Si {1}' | xargs -ro paru -S"
 alias aurns="paru -Qq | fzf -m --preview 'paru -Si {1}' | xargs -ro paru -Rns"
-which rsync > /dev/null 2>&1 alias cp="rsync -avh --progress"
+type rsync > /dev/null 2>&1 && alias cp="rsync -avh --progress"
 
 # cd && ls
 function cd {
   cmd="ls"
-  which exa > /dev/null 2>&1 && cmd="exa"
+  type exa > /dev/null 2>&1 && cmd="exa"
   builtin cd "$@" && $cmd
 }
 
@@ -52,8 +52,8 @@ function ssh_compat {
 }
 alias ssh="ssh_compat"
 
-which exa > /dev/null 2>&1 && alias ls='exa'
-if which 'fzf' > /dev/null 2>&1; then
+type exa > /dev/null 2>&1 && alias ls='exa'
+if type 'fzf' > /dev/null 2>&1; then
   FZF_CTRL_T_COMMAND="command find -L . -mindepth 1 -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -prune"
   [ -r /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
   [ -r /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
