@@ -1,4 +1,0 @@
-#!/bin/bash
-#lmao @ my bash inline formatting
-OPT="cat /proc/cpuinfo | grep 'cpu MHz' | awk '{print $4}'"
-watch -n 1 $OPT

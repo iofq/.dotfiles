@@ -11,7 +11,7 @@ xset -dpms
 setxkbmap -option "caps:super"
 
 feh --bg-scale /home/pape
-redshift -l 43:-89 -t 6100k:3000k &
+redshift -l 43:-89 -t 5900k:2800k &
 sh $HOME/.bin/bar.sh &
 clipmenud &
 amixer set Master 40% unmute
