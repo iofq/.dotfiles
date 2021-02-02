@@ -16,6 +16,7 @@ let g:netrw_banner=0
 let g:netrw_liststyle=3
 
 set pastetoggle=<F2>
+nnoremap <F3> :call system('some_command', getreg('r', 1, 1) + (getregtype('r') isnot# 'v' ? [''] : []))<cr>
 inoremap wq <Esc>l
 vnoremap wq <Esc>l
 nnoremap gr gT

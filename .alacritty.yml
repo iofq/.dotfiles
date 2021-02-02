@@ -21,7 +21,7 @@ cursor:
   style: Block
   unfocused_hollow: true
 draw_bold_text_with_bright_colors: true
-background_opacity: .95
+background_opacity: 1
 colors:
   primary:
     background:	'#000000'

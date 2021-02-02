@@ -19,7 +19,8 @@ amixer set Master 40% unmute
 while true; do
   picom -GCb --config /dev/null \
     --vsync \
-    --experimental-backends \
-    --unredir-if-possible
+    --backend glx \
+    --unredir-if-possible \
+    --sw-opti 
   dwm
 done
