@@ -7,7 +7,7 @@ xsetroot -cursor_name left_ptr &
 xset r rate 300 60
 xset s off
 xset s noblank
-xset -dpms
+# xset -dpms
 setxkbmap -option "caps:super"
 
 feh --bg-scale /home/pape

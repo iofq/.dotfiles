@@ -1,6 +1,10 @@
-*foreground:        #e0e0d0
+Xft.dpi: 144
+Xft.hinting:1
+Xft.antialias: 1
+Xft.autohint: 0
+*foreground:        #bcbccb
 *background:        #000000
-*.foreground:       #e0e0d0
+*.foreground:       #bcbccb
 *.background:       #000000
 
 ! Colors 0-15.
@@ -18,8 +22,8 @@
 *color5:  #af5fd7
 *.color6: #008cac
 *color6:  #008cac
-*.color7: #e0e0d0
-*color7:  #e0e0d0
+*.color7: #bcbccb
+*color7:  #bcbccb
 *.color8: #95A5A6
 *color8:  #95A5A6
 *.color9: #af5f00

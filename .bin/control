@@ -1,0 +1,30 @@
+#!/bin/bash
+
+volume() {
+    if (( $1 == 0 )); then
+      amixer set Master toggle
+    elif (( $1 > 0 )); then
+      amixer set Master $1%+ unmute
+    else
+      amixer set Master $(echo $1 | tr -d -)%- unmute
+    fi
+}
+
+backlight() {
+    CURRENT=$(cat /sys/class/backlight/intel_backlight/brightness)
+    NEW=$(( $CURRENT + $1)) 
+
+    (( $NEW > 187 )) && NEW=187
+    (( $NEW < 0 )) && NEW=0
+
+    echo $NEW > /sys/class/backlight/intel_backlight/brightness
+}
+
+if [[ $1 == "backlight" ]]; then
+    shift
+    backlight $@
+fi
+if [[ $1 == "volume" ]]; then
+    shift
+    volume $@
+fi

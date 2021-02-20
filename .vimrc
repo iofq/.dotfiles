@@ -16,7 +16,7 @@ let g:netrw_banner=0
 let g:netrw_liststyle=3
 
 set pastetoggle=<F2>
-nnoremap <F3> :call system('some_command', getreg('+', 1, 1) + (getregtype('+') isnot# 'v' ? [''] : []))<cr> #copy to windows clipboard from wsl
+nnoremap <F3> :call system('/mnt/c/Windows/System32/clip.exe', getreg('+', 1, 1) + (getregtype('+') isnot# 'v' ? [''] : []))<cr>
 inoremap wq <Esc>l
 vnoremap wq <Esc>l
 nnoremap gr gT
