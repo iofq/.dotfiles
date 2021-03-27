@@ -16,27 +16,14 @@ let g:netrw_banner=0
 let g:netrw_liststyle=3
 
 set pastetoggle=<F2>
-nnoremap <F3> :call system('/mnt/c/Windows/System32/clip.exe', getreg('+', 1, 1) + (getregtype('+') isnot# 'v' ? [''] : []))<cr>
 inoremap wq <Esc>l
 vnoremap wq <Esc>l
 nnoremap gr gT
-
 inoremap {<cr> {<cr>}<Esc>O
 nnoremap <silent> [<space>  :<c-u>put!=repeat([''],v:count)<bar>']+1<cr>
 nnoremap <silent> ]<space>  :<c-u>put =repeat([''],v:count)<bar>'[-1<cr><Esc>
 
 set completeopt=menu,longest
-inoremap <expr> <Tab> TabComplete()
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
-fun! TabComplete()
-    if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
-        return "\<C-P>"
-    else
-        return "\<Tab>"
-	endif
-endfun
-
-autocmd InsertLeave * update
 autocmd FileType yaml,dockerfile setlocal ts=2 sts=2 sw=2
 autocmd FileType text setlocal spell spelllang=en_us spellcapcheck= " [s and ]s, z=
 autocmd FileType python nmap <buffer> <leader>r <Esc>:w<CR>:!clear;python %<CR>
@@ -52,14 +39,12 @@ set virtualedit=onemore
 set backspace=indent,eol,start
 
 set laststatus=1
-set wildmenu
-set path=.,**
+set path=.,** wildmenu
 set incsearch hlsearch
 set ignorecase
 
 set noswapfile nobackup undofile undodir=~/.vim/undodir
 set clipboard=unnamedplus
-set ttymouse=sgr ttyfast "fix scrolling in st
 set mouse=a
 set t_Co=256
 

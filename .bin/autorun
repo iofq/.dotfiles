@@ -2,7 +2,7 @@
 
 [[ -f $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
 
-xrandr --output eDP-1 --mode 1920x1080 --auto
+xrandr --output eDP-1 --mode 3200x1800 --auto
 xsetroot -cursor_name left_ptr &
 xset r rate 300 60
 xset s off
@@ -11,7 +11,7 @@ xset s noblank
 setxkbmap -option "caps:super"
 
 feh --bg-scale /home/pape
-redshift -l 43:-89 -t 5900k:2800k &
+redshift -l 43:-89 -t 5900k:2500k &
 sh $HOME/.bin/bar.sh &
 clipmenud &
 amixer set Master 40% unmute
