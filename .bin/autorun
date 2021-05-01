@@ -1,5 +1,4 @@
 #!/bin/sh
-
 [[ -f $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
 
 xrandr --output eDP-1 --mode 3200x1800 --auto
@@ -17,10 +16,9 @@ clipmenud &
 amixer set Master 40% unmute
 
 while true; do
-  picom -GCb --config /dev/null \
+  killall picom
+  picom -GCb --config <(echo "unredir-if-possible;") \
     --vsync \
-    --backend glx \
-    --unredir-if-possible \
-    --sw-opti 
+    --experimental-backends
   dwm
 done
