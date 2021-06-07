@@ -1,13 +1,8 @@
 FROM alpine:latest
 
-#base
 RUN apk update && \
   apk add --no-cache bash vim openssh curl git tmux sudo 
-
-#dev
 RUN apk add --no-cache python3 py3-pip
-
-# User setup
 RUN addgroup -S e && adduser -S e -G e -s /bin/bash -h /home/e && \
   echo "e ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
   chown -R e:e /home/e

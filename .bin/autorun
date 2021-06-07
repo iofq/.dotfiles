@@ -16,9 +16,5 @@ clipmenud &
 amixer set Master 40% unmute
 
 while true; do
-  killall picom
-  picom -GCb --config <(echo "unredir-if-possible;") \
-    --vsync \
-    --experimental-backends
   dwm
 done

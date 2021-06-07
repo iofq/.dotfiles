@@ -29,10 +29,10 @@ bind "set show-all-if-ambiguous on"
 bind "set menu-complete-display-prefix on"
 bind '"\t":menu-complete'
 bind '"\ev":edit-and-execute-command' #alt-v edit in $EDITOR
-bind '"\e\\":"cd .. && pwd\n"' #ALT-\ to cd ..
 
 # aliases
 alias la='/bin/ls -lah --color=auto'
+alias ll='la'
 alias :q="exit"
 alias gitu='git add . && git commit && git push'
 alias aur="paru -Slq | fzf -m --preview 'paru -Si {1}' | xargs -ro paru -S"
