@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 [[ -f $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
 
 xrandr --output eDP-1 --mode 3200x1800 --auto
@@ -12,7 +12,6 @@ setxkbmap -option "caps:super"
 feh --bg-scale /home/pape
 redshift -l 43:-89 -t 5900k:2500k &
 sh $HOME/.bin/bar.sh &
-clipmenud &
 amixer set Master 40% unmute
 
 while true; do

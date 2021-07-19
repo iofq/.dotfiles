@@ -8,7 +8,7 @@ function prompt_command {
   PS1="\[\033[38;5;4m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;7m\]\W\[$(tput sgr0)\]\[\033[38;5;4m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;6m\]\[\033[38;5;7m\]\$\[$(tput sgr0)\] "
 }
 PROMPT_COMMAND='prompt_command;history -a'
-export PATH=~/.bin:$PATH
+export PATH=~/.bin:~/.local/bin:$PATH
 export EDITOR=vim
 export GPG_2FA="cjriddz@protonmail.com"
 xhost +local:root > /dev/null 2>&1
@@ -35,8 +35,8 @@ alias la='/bin/ls -lah --color=auto'
 alias ll='la'
 alias :q="exit"
 alias gitu='git add . && git commit && git push'
-alias aur="paru -Slq | fzf -m --preview 'paru -Si {1}' | xargs -ro paru -S"
-alias aurns="paru -Qq | fzf -m --preview 'paru -Si {1}' | xargs -ro paru -Rns"
+alias aur="apt-cache search . | cut -d ' ' -f1 | fzf -m --preview 'apt show {1}' | sudo xargs -o -- apt install"
+alias aurns="apt list --installed | cut -d "/" -f1 | fzf -m --preview 'apt show {1}' | sudo xargs -o  -- apt purge"
 type rsync > /dev/null 2>&1 && alias cp="rsync -avh --progress"
 
 # cd && ls

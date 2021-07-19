@@ -4,12 +4,12 @@ trap \
  SIGINT SIGTERM ERR EXIT
 
 bat() {
-   battery="$(cat /sys/class/power_supply/BAT0/capacity)"
+   battery=$(cat /sys/class/power_supply/BAT0/capacity)
    time=$(cat /tmp/.battime)
    if [[ $(cat /sys/class/power_supply/BAT0/status) == "Charging" ]]; then
-     echo "$battery%+"
+    echo "$battery%+"
    else
-     echo "$time, $battery%$charge"
+    echo "$time, $battery%$charge"
    fi
 }
 
@@ -33,7 +33,7 @@ vol() {
 }
 
 temp_update() {
-  TEMP=$(cat /sys/class/thermal/thermal_zone8/temp)
+  TEMP=$(cat /sys/class/thermal/thermal_zone7/temp)
   echo $((TEMP / 1000)) 
 }
 
@@ -58,26 +58,26 @@ update_3() {
     cpu_update > /tmp/.cpu
     temp_update > /tmp/.temp
     mhz_update > /tmp/.mhz
-    if ping -W 1 -c 1 10.6.0.1 > /dev/null; then
-      echo "wg0" > /tmp/.online
+    if ping -W 1 -c 1 8.8.8.8 > /dev/null; then
+      echo "@" > /tmp/.online
     else
       echo "?" > /tmp/.online
     fi
     sleep 3
   done
 }
-update_20() {
+update_30() {
   while :; do
     curl -s wttr.in/?format=%t | head -c 7 > /tmp/.wttr
     awk 'NR==3 {printf("%.0ddB",$4) > "/tmp/.wifi"}' /proc/net/wireless
     acpi | awk '{print $5}' > /tmp/.battime
-    sleep 20
+    sleep 30
   done
 }
 
 SLEEP_SEC=1
 PAD=" | "
-update_20 &
+update_30 &
 update_3 &
 while true; do
     xsetroot -name "$(mem)G$PAD$(cat /tmp/.cpu)$PAD$(cat /tmp/.mhz)$PAD$(cat /tmp/.temp)°C$PAD$(cat /tmp/.wifi), $(cat /tmp/.online)$PAD$(vol)$PAD$(bat)$PAD$(cat /tmp/.wttr), $(time_date)"
