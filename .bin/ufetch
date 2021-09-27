@@ -4,7 +4,7 @@
 host="$(cat /etc/hostname)"
 os='Debian 11'
 kernel="$(uname -sr)"
-uptime="$(uptime -p | sed 's/up //')"
+uptime="69 days, 4 hours, 20 minutes"
 packages="$(apt list --installed 2>/dev/null | wc -l)"
 shell="$(basename "$SHELL")"
 

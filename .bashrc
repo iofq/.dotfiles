@@ -11,6 +11,7 @@ PROMPT_COMMAND='prompt_command;history -a'
 export PATH=~/.bin:~/.local/bin:$PATH
 export EDITOR=vim
 export GPG_2FA="cjriddz@protonmail.com"
+export NNN_OPENER=$(which librewolf)
 xhost +local:root > /dev/null 2>&1
 
 shopt -s cmdhist
@@ -29,6 +30,8 @@ bind "set show-all-if-ambiguous on"
 bind "set menu-complete-display-prefix on"
 bind '"\t":menu-complete'
 bind '"\ev":edit-and-execute-command' #alt-v edit in $EDITOR
+bind '"\C-k": previous-history'
+bind '"\C-j": next-history'
 
 # aliases
 alias la='/bin/ls -lah --color=auto'

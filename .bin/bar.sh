@@ -33,7 +33,7 @@ vol() {
 }
 
 temp_update() {
-  TEMP=$(cat /sys/class/thermal/thermal_zone7/temp)
+  TEMP=$(cat /sys/class/thermal/thermal_zone8/temp)
   echo $((TEMP / 1000)) 
 }
 
