@@ -28,4 +28,10 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: iofq/dots:latest
+          tags: ghcr.io/iofq/dots:latest
+  benchmark:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test Nvim startup time
+        run: docker run --rm -it sh -c "nvim --startuptime /tmp/nvim.log -c exit && tail -1 /tmp/nvim.log && exit"
