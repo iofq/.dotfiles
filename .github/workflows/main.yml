@@ -35,5 +35,5 @@ jobs:
       - name: Test Nvim startup time
         run: >
           nvim --startuptime /tmp/nvim.log -c exit && 
-          printf "\nStartup time: %s\n" $(tail -1 /tmp/nvim.log | cut -d' ' -f 1) &&
+          printf "\nStartup time: %s ms\n" $(tail -1 /tmp/nvim.log | cut -d'.' -f 1) &&
           exit
