@@ -33,4 +33,4 @@ jobs:
 
     steps:
       - name: Test Nvim startup time
-        run: docker run sh -c "nvim --startuptime /tmp/nvim.log -c exit && tail -1 /tmp/nvim.log && exit"
+        run: docker run ghcr.io/iofq/dots:latest sh -c "nvim --startuptime /tmp/nvim.log -c exit && tail -1 /tmp/nvim.log && exit"
