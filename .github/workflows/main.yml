@@ -33,4 +33,7 @@ jobs:
       - name: Install dependancies
         run: sudo apt install neovim g++
       - name: Test Nvim startup time
-        run: nvim --startuptime /tmp/nvim.log -c exit && printf "\nStartup time: %s\n" $(tail -1 /tmp/nvim.log | cut -d' ' -f 1) && exit
+        run: >
+          nvim --startuptime /tmp/nvim.log -c exit && 
+          printf "\nStartup time: %s\n" $(tail -1 /tmp/nvim.log | cut -d' ' -f 1) &&
+          exit
