@@ -30,5 +30,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install dependancies
+        run: sudo apt install neovim g++
       - name: Test Nvim startup time
-        run: docker run --rm -t ghcr.io/iofq/dots:latest sh -c "nvim --startuptime /tmp/nvim.log -c exit && tail -1 /tmp/nvim.log && exit"
+        run: nvim --startuptime /tmp/nvim.log -c exit && printf "\nStartup time: %s\n" $(tail -1 /tmp/nvim.log | cut -d' ' -f 1) && exit
