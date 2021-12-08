@@ -4,8 +4,8 @@
 function prompt_command {
   GIT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null )
   [[ $GIT_BRANCH != '' ]] && \
-  PS1="\[\033[38;5;4m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;7m\]\W\[$(tput sgr0)\]\[\033[38;5;4m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;6m\]($GIT_BRANCH)\[\033[38;5;7m\]\$\[$(tput sgr0)\] " || \
-  PS1="\[\033[38;5;4m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;7m\]\W\[$(tput sgr0)\]\[\033[38;5;4m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;6m\]\[\033[38;5;7m\]\$\[$(tput sgr0)\] "
+  PS1="\[\033[38;5;1m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;7m\]\W\[$(tput sgr0)\]\[\033[38;5;1m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;3m\]($GIT_BRANCH)\[\033[38;5;7m\]\$\[$(tput sgr0)\] " || \
+  PS1="\[\033[38;5;1m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;7m\]\W\[$(tput sgr0)\]\[\033[38;5;1m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;3m\]\[\033[38;5;7m\]\$\[$(tput sgr0)\] "
 }
 PROMPT_COMMAND='prompt_command;history -a'
 export PATH=~/.bin:~/.local/bin:$PATH

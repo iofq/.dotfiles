@@ -1,0 +1,39 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Set up Docker Buildx 
+        uses: docker/setup-buildx-action@v1
+
+      -
+        name: Login to ghcr.io
+        uses: docker/login-action@v1
+        with: 
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - 
+        name: Build container and push to ghcr.io
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/iofq/dots:latest
+  benchmark:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install dependancies
+        run: sudo apt install neovim g++
+      - name: Test Nvim startup time
+        run: >
+          nvim --startuptime /tmp/nvim.log -c exit && 
+          printf "\nStartup time: %s ms\n" $(tail -1 /tmp/nvim.log | cut -d'.' -f 1) &&
+          exit
