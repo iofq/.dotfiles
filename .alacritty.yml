@@ -30,7 +30,7 @@ colors:
     green:	'#00853e'
     yellow:	'#c59820'
     blue:	'#3971ed'
-    magenta:	'#584783'
+    magenta:	'#764783'
     cyan:	'#237986'
     white:	'#bababd'
   bright:
@@ -39,7 +39,7 @@ colors:
     green:	'#00853e'
     yellow:	'#c59820'
     blue:	'#3971ed'
-    magenta:	'#584783'
+    magenta:	'#764783'
     cyan:	'#237986'
     white:	'#ECF0F1'
   vi_mode_cursor:

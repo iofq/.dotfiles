@@ -8,7 +8,7 @@ function prompt_command {
   PS1="\[\033[38;5;1m\][\u@\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;7m\]\W\[$(tput sgr0)\]\[\033[38;5;1m\]]\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;3m\]\[\033[38;5;7m\]\$\[$(tput sgr0)\] "
 }
 PROMPT_COMMAND='prompt_command;history -a'
-export PATH=~/.bin:~/.local/bin:$PATH
+export PATH=/usr/local/go/bin:~/go/bin:~/.bin:~/.local/bin:$PATH
 export EDITOR=vim
 export GPG_2FA="cjriddz@protonmail.com"
 export NNN_OPENER=$(which librewolf)

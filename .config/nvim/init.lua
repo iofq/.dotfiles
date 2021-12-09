@@ -24,6 +24,7 @@ require("packer").startup(function()
     use "junegunn/fzf.vim"              -- fzf vim integration
     use "wellle/targets.vim"            -- ci) cin( cin' di. dia dib
     use "lukas-reineke/indent-blankline.nvim" -- show tabs
+    use "fatih/vim-go"
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
 end)
 
