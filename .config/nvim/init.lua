@@ -43,6 +43,7 @@ vim.g.netrw_banner = 0                      -- disable annoying banner
 vim.g.netrw_altv = 1                        -- open splits to the right
 vim.g.netrw_liststyle = 3                   -- tree view
 
+
 vim.g.fzf_layout = { down = "~30%" }        -- open fzf below
 
 vim.opt.list = false
