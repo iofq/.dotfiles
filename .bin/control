@@ -2,22 +2,25 @@
 
 volume() {
     if (( $1 == 0 )); then
-      amixer set Master toggle
+      pactl set-sink-mute @DEFAULT_SINK@ toggle
     elif (( $1 > 0 )); then
-      amixer set Master $1%+ unmute
+      pactl set-sink-mute @DEFAULT_SINK@ off
+      pactl set-sink-volume @DEFAULT_SINK@ +$1%
     else
-      amixer set Master $(echo $1 | tr -d -)%- unmute
+      pactl set-sink-mute @DEFAULT_SINK@ off
+      pactl set-sink-volume @DEFAULT_SINK@ -$(echo $1 | tr -d -)%
     fi
 }
 
 backlight() {
-    CURRENT=$(cat /sys/class/backlight/intel_backlight/brightness)
+    CURRENT=$(cat /sys/class/backlight/amdgpu_bl0/brightness)
     NEW=$(( $CURRENT + $1)) 
 
-    (( $NEW > 187 )) && NEW=187
+    (( $NEW > $(cat /sys/class/backlight/amdgpu_bl0/max_brightness) )) && NEW=$(cat /sys/class/backlight/amdgpu_bl0/max_brightness)
     (( $NEW < 0 )) && NEW=0
 
-    echo $NEW > /sys/class/backlight/intel_backlight/brightness
+    (( $NEW == 0 )) && xset dpms force off
+    echo $NEW > /sys/class/backlight/amdgpu_bl0/brightness
 }
 
 if [[ $1 == "backlight" ]]; then

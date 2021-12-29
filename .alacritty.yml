@@ -3,7 +3,7 @@ env:
 window:
   title: alacritty
   padding:
-    x: 20
+    x: 16
     y: 16
   dynamic_padding: true
   decorations: none
@@ -11,7 +11,7 @@ font:
   normal: 
     family: Spleen 32x64
     style: Medium
-  size: 13
+  size: 12
   offset:
     x: 1
     y: 1
@@ -19,7 +19,7 @@ cursor:
   style: Block
   unfocused_hollow: true
 draw_bold_text_with_bright_colors: true
-background_opacity: 1
+window.opacity: 1
 colors:
   primary:
     background:	'#000000'

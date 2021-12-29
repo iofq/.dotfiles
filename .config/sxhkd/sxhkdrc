@@ -1,0 +1,14 @@
+XF86MonBrightnessUp
+    control backlight 5
+XF86MonBrightnessDown
+    control backlight -5
+XF86AudioRaiseVolume
+	control volume 10
+XF86AudioLowerVolume
+	control volume -10
+XF86AudioMute
+	control volume 0
+super + shift + s
+    scrot
+super + shift + d
+    click

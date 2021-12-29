@@ -1,0 +1,9 @@
+#!/bin/bash
+if [[ $(xrandr | grep -w connected | grep "^DP") == "" ]]; then
+    echo "enable eDP"
+    xrandr --output eDP-1 --auto
+else
+    echo "disable eDP"
+    xrandr --output eDP-1 --off
+fi
+exit 0

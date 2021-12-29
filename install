@@ -6,7 +6,7 @@ SET_IGNORE="Dockerfile README.md install scrot.png"
 main() {
   IGNORE=" $(basename $0) .gitignore ${SET_IGNORE}" #prepend default ignore values
   IGNORE=$(echo "$IGNORE" | sed "s/ / ! -wholename .\//g")
-  for f in $(find . -type f -not -path "./.git/*" $IGNORE ); do
+  for f in $(find . -type f -not -path "./.git*/*" $IGNORE ); do
     if [[ $UNLINK == 1 ]]; then
       unlink $f
     else
