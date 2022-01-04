@@ -1,0 +1,11 @@
+#!/bin/bash
+if (( $(pgrep -a click | wc -l) <= 2)); then
+    r=$[ $RANDOM % 9 + 338 ]
+    for i in $(seq 1 $r); do
+        d=$[ $RANDOM % 300 + 1200 ]
+        echo $i $d
+        xdotool click --repeat 1 --delay $d 1
+    done
+else
+    killall click
+fi

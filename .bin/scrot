@@ -1,0 +1,2 @@
+DATE=$(date --iso-8601=seconds)
+maim -m 10 -s -u "/home/scrot/$DATE.png" && xclip -selection clipboard -t image/png -i "/home/scrot/$DATE.png"

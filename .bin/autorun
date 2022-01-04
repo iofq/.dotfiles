@@ -1,7 +1,7 @@
 #!/bin/bash
 [[ -f $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
 
-xrandr --output eDP-1 --mode 1920x1080 --auto
+xrandr --output eDP-1 --mode 1920x1080 --auto --set TearFree on
 xsetroot -cursor_name left_ptr &
 xset s off
 xset s noblank
@@ -24,6 +24,6 @@ while true; do
   setxkbmap -option "caps:super"
   autorandr --change
   feh --bg-center /home/pape
-  picom --vsync --backend glx -GCb --config /dev/null &
+  picom --vsync --experimental-backends -GCb --config /dev/null &
   dwm
 done

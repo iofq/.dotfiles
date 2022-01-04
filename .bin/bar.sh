@@ -25,12 +25,10 @@ mem() {
 }
 
 vol() {
-    muted=$(amixer get Master | grep off)
-    if [[ $muted != "" ]]; then
-        echo "muted"
-    else
-        amixer get Master | grep -m1 -Po "\d{1,3}%"
-    fi
+    MUTED=$(amixer get Master | grep off)
+    amixer get Master | grep -m1 -Po "\d{1,3}%"
+    [[ $MUTED != '' ]] && echo " M";
+
 }
 
 temp_update() {

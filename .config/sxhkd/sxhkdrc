@@ -8,7 +8,10 @@ XF86AudioLowerVolume
 	control volume -10
 XF86AudioMute
 	control volume 0
-super + shift + s
+
+super + r
     scrot
-super + shift + d
-    click
+super + e
+    $HOME/.bin/click
+super + c
+    autorandr --change

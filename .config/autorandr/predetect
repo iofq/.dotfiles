@@ -1,9 +1,10 @@
 #!/bin/bash
-if [[ $(xrandr | grep -w connected | grep "^DP") == "" ]]; then
-    echo "enable eDP"
-    xrandr --output eDP-1 --auto
-else
+setxkbmap -option "caps:super"
+if [[ $(cat /proc/acpi/button/lid/LID/state | grep open) == "" ]]; then
     echo "disable eDP"
     xrandr --output eDP-1 --off
+else
+    echo "enable eDP"
+    xrandr --output eDP-1 --auto
 fi
 exit 0

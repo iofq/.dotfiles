@@ -1,0 +1,2 @@
+#!/bin/bash
+_JAVA_AWT_WM_NONREPARENTING=1 exec /home/e/.local/bin/RuneLite.AppImage

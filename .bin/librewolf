@@ -1,0 +1,2 @@
+#!/bin/bash
+MOZ_X11_EGL=1 exec $HOME/.local/bin/LibreWolf.x86_64.AppImage

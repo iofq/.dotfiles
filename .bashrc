@@ -9,7 +9,7 @@ function prompt_command {
 }
 PROMPT_COMMAND='prompt_command;history -a'
 export PATH=/usr/local/go/bin:~/go/bin:~/.bin:~/.local/bin:$PATH
-export EDITOR=vim
+export EDITOR=nvim
 export GPG_2FA="cjriddz@protonmail.com"
 export NNN_OPENER=$(which librewolf)
 xhost +local:root > /dev/null 2>&1
@@ -41,6 +41,7 @@ alias gitu='git add . && git commit && git push'
 alias aur="apt-cache search . | cut -d ' ' -f1 | fzf -m --preview 'apt show {1}' | sudo xargs -o -- apt install"
 alias aurns="apt list --installed | cut -d "/" -f1 | fzf -m --preview 'apt show {1}' | sudo xargs -o  -- apt purge"
 type rsync > /dev/null 2>&1 && alias cp="rsync -avh --progress"
+type nvim > /dev/null 2>&1 && alias vim="nvim"
 
 # cd && ls
 function cd {
@@ -48,14 +49,6 @@ function cd {
   type exa > /dev/null 2>&1 && cmd="exa"
   builtin cd "$@" && $cmd
 }
-
-#change $TERM while we ssh for compatibility
-function ssh_compat {
-  OLDTERM=$TERM
-  export TERM=vt100
-  ssh $@; export TERM=$OLDTERM; unset OLDTERM
-}
-alias ssh="ssh_compat"
 
 type exa > /dev/null 2>&1 && alias ls='exa'
 if type 'fzf' > /dev/null 2>&1; then

@@ -19,7 +19,6 @@ require("packer").startup(function()
     use "tpope/vim-surround"            -- cs\""
     use {
         "junegunn/fzf",                 -- fzf
-        run = "fzf#install()"
     }
     use "junegunn/fzf.vim"              -- fzf vim integration
     use "wellle/targets.vim"            -- ci) cin( cin' di. dia dib
@@ -122,6 +121,7 @@ remap("i", "wq", "<esc>l")
 remap("v", "wq", "<esc>l")
 remap("i", "{<CR>", "{<CR>}<Esc>O")
 remap("n", "Y", "y$")
+remap("t", "wq", "<C-\\><C-n>")
 
 -- git
 remap("n", "<leader>gs", ":Git status<CR>")
