@@ -1,11 +1,26 @@
 #!/bin/bash
+
 if (( $(pgrep -a click | wc -l) <= 2)); then
-    r=$[ $RANDOM % 9 + 338 ]
+    r=$[ $RANDOM % 56 + 1238 ]
     for i in $(seq 1 $r); do
-        d=$[ $RANDOM % 300 + 1200 ]
+        d=$[ $RANDOM % 600 + 1200 ]
         echo $i $d
         xdotool click --repeat 1 --delay $d 1
     done
 else
     killall click
 fi
+
+#NMZ
+# if (( $(pgrep -a click | wc -l) <= 2)); then
+#     r=$[ $RANDOM % 28 + 238 ]
+#     for i in $(seq 1 $r); do
+#         sleep 0.$[ $RANDOM % 55 ]
+#         xdotool click --repeat 1 1
+#         sleep 0.$[ $RANDOM % 55 ]
+#         xdotool click --repeat 1 1
+#         sleep $[ $RANDOM % 10 + 40 ]
+#     done
+# else
+#     killall click
+# fi

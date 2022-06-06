@@ -9,7 +9,7 @@ XF86AudioLowerVolume
 XF86AudioMute
 	control volume 0
 
-super + r
+super + shift + s
     scrot
 super + e
     $HOME/.bin/click

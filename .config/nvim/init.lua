@@ -42,7 +42,6 @@ vim.g.netrw_banner = 0                      -- disable annoying banner
 vim.g.netrw_altv = 1                        -- open splits to the right
 vim.g.netrw_liststyle = 3                   -- tree view
 
-
 vim.g.fzf_layout = { down = "~30%" }        -- open fzf below
 
 vim.opt.list = false
@@ -148,42 +147,3 @@ require"nvim-treesitter.configs".setup {
         enable = true,
     }
 }
-
-----------------------------------------
--- colors
-----------------------------------------
-vim.cmd[[
-hi Comment ctermfg=3
-hi Conditional ctermfg=5
-hi Constant ctermfg=2
-hi CursorLine ctermbg=236 cterm=NONE
-hi CursorLineNR ctermfg=15 ctermbg=236 cterm=NONE
-hi Function ctermfg=2
-hi Linenr ctermfg=246
-hi Number ctermfg=2
-hi Pmenu ctermbg=7 ctermfg=0
-hi PmenuSel ctermbg=6 ctermfg=0
-hi Number ctermfg=2
-hi Repeat ctermfg=4
-hi Conditional ctermfg=134
-hi Special ctermfg=5
-hi SpellBad ctermfg=NONE ctermbg=NONE cterm=underline
-hi Statement ctermfg=6
-hi StatusLine ctermbg=242 ctermfg=253 cterm=NONE
-hi StatusLineNC ctermbg=236 ctermfg=253 cterm=NONE
-hi String ctermfg=1
-hi TabLine ctermfg=246 ctermbg=NONE cterm=NONE
-hi TabLineFill ctermfg=0 ctermbg=NONE cterm=bold
-hi TabLineSel ctermfg=253 ctermbg=NONE cterm=bold,underline
-hi VertSplit ctermfg=5 ctermbg=0 cterm=NONE
-hi Visual ctermfg=15 ctermbg=8
-hi pythonStatement ctermfg=5 cterm=bold
-hi shDerefSimple ctermfg=5
-hi! link bashStatement Normal
-hi! link pythonFunctionCall Function
-hi! link pythonOperator Conditional
-hi! link shCommandSub Normal
-hi! link shOperator Normal
-hi! link shStatement Normal
-hi! link shVariable Normal
-]]

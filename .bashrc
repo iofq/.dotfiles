@@ -37,6 +37,8 @@ bind '"\C-j": next-history'
 alias la='/bin/ls -lah --color=auto'
 alias ll='la'
 alias :q="exit"
+alias mpv="mpv --no-keepaspect-window"
+alias sus="systemctl suspend"
 alias gitu='git add . && git commit && git push'
 alias aur="apt-cache search . | cut -d ' ' -f1 | fzf -m --preview 'apt show {1}' | sudo xargs -o -- apt install"
 alias aurns="apt list --installed | cut -d "/" -f1 | fzf -m --preview 'apt show {1}' | sudo xargs -o  -- apt purge"

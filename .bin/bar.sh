@@ -57,25 +57,32 @@ update_3() {
         cpu_update > /tmp/.cpu
         temp_update > /tmp/.temp
         mhz_update > /tmp/.mhz
-        if ping -W 1 -c 1 8.8.8.8 > /dev/null; then
-            echo "@" > /tmp/.online
-        else
-            echo "?" > /tmp/.online
-        fi
         sleep 3
     done
 }
 update_30() {
     while :; do
-        curl -s wttr.in/?format=%t | head -c 7 > /tmp/.wttr
         awk 'NR==3 {printf("%.0ddB",$4) > "/tmp/.wifi"}' /proc/net/wireless
         acpi | awk '{print $5}' > /tmp/.battime
+        if ping -W 1 -c 1 8.8.8.8 > /dev/null; then
+            echo "@" > /tmp/.online
+        else
+            echo "?" > /tmp/.online
+        fi
         sleep 30
+    done
+}
+
+update_300() {
+    while :; do
+        curl -s wttr.in/?format=%t | head -c 7 > /tmp/.wttr
+        sleep 300
     done
 }
 
 SLEEP_SEC=1
 PAD=" | "
+update_300 &
 update_30 &
 update_3 &
 while true; do
