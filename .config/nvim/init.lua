@@ -1,22 +1,20 @@
-----------------------------------------
+-- env
+vim.env.FZF_DEFAULT_COMMAND = 'find .'
+
 -- install packer
 ----------------------------------------
 local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-end vim.api.nvim_exec( [[ augroup Packer autocmd!  autocmd BufWritePost init.lua PackerCompile
-    augroup end
-    ]],
-    false
-)
-
+    vim.fn.execute("!git clone --depth 1 https://github.com/wbthomason/packer.nvim " .. install_path)
+end
 local use = require("packer").use
 require("packer").startup(function()
     use "wbthomason/packer.nvim"        -- packer manages itself
 
     use "tpope/vim-commentary"          -- gcc Vgc
     use "tpope/vim-surround"            -- cs\""
+    use "ggandor/leap.nvim"
+    use "akinsho/toggleterm.nvim"
     use {
         "junegunn/fzf",                 -- fzf
     }
@@ -25,110 +23,104 @@ require("packer").startup(function()
     use "lukas-reineke/indent-blankline.nvim" -- show tabs
     use "fatih/vim-go"
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+    use "nvim-treesitter/nvim-treesitter-textobjects"
+    if packer_bootstrap then
+        require('packer').sync()
+    end
 end)
 
-local disabled_built_ins = {
-    "getscript",
-    "getscriptPlugin",
-    "2html_plugin",
-    "logipat",
-    "rrhelper",
-}
-for _, plugin in pairs(disabled_built_ins) do
-    vim.g["loaded_" .. plugin] = 1
-end
+
+-- settings
+----------------------------------------
+vim.opt.autoindent = true
+vim.opt.backspace = "indent,eol,start"
+vim.opt.backup = false                      -- and auto backps, to instead use
+vim.opt.breakindent = true
+vim.opt.clipboard = "unnamedplus"           -- use system clipboard
+vim.opt.completeopt = "menu,longest"
+vim.opt.cursorline = true
+vim.opt.expandtab = true                    -- insert tabs as spaces
+vim.opt.guicursor = ""                      -- fixes alacritty changing cursor
+vim.opt.hidden = true                       -- dont save when switching buffers
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true                   -- ignore case in searches
+vim.opt.inccommand = "split"              -- incremental live completion
+vim.opt.incsearch = true
+vim.opt.laststatus = 1
+vim.opt.list = true
+vim.opt.listchars:append("trail:·")
+vim.opt.mouse = "a"
+vim.opt.nrformats:append("alpha")           -- let Ctrl-a do letters as well
+vim.opt.number = true
+vim.opt.pastetoggle = "<F2>"
+vim.opt.path:append("**")                   -- enable fuzzy :find ing
+vim.opt.relativenumber = true
+vim.opt.shadafile = "NONE"                  -- disable shada
+vim.opt.shiftwidth = 0                      -- >> shifts by tabstop
+vim.opt.showmatch = true                    -- highlight matching brackets
+vim.opt.signcolumn= "number"
+vim.opt.smartcase = true                    -- unless capital query
+vim.opt.smartindent = true                  -- indent according to lang 
+vim.opt.softtabstop = -1                     -- backspace removes tabstop
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.swapfile = false                    -- disable swapfiles
+vim.opt.tabstop = 4                         -- 4 space tabs
+vim.opt.undofile = true                     -- enable auto save of undos
+vim.opt.updatetime = 250                    -- decrease update time
+vim.opt.virtualedit = "onemore"
+vim.opt.wildmenu = true
 
 vim.g.netrw_banner = 0                      -- disable annoying banner
 vim.g.netrw_altv = 1                        -- open splits to the right
 vim.g.netrw_liststyle = 3                   -- tree view
+vim.g.fzf_layout = { window = { width = 0.9, height = 0.6 } }
+vim.g.indent_blankline_use_treesitter = true
 
-vim.g.fzf_layout = { down = "~30%" }        -- open fzf below
+local undopath = "~/.local/share/nvim/undo"
+vim.api.nvim_create_autocmd("VimEnter", {
+    command = "silent !mkdir -p " .. undopath,
+    pattern = "init.lua",
+    group = vim.api.nvim_create_augroup("Init", {}),
+})
 
-vim.opt.list = false
-----------------------------------------
--- rice
-----------------------------------------
-vim.opt.cursorline = true
-vim.opt.number = true
-
-----------------------------------------
--- sets
-----------------------------------------
-vim.opt.shadafile = "NONE"                  -- disable shada
-vim.opt.number = true                       -- line nums
-vim.opt.relativenumber = true
-
-vim.opt.smartindent = true                  -- indent according to lang 
-
-vim.opt.tabstop = 4                         -- 4 space tabs
-vim.opt.softtabstop = 4                     -- backspace removes all spaces
-vim.opt.shiftwidth = 4                      -- >> shifts by 4
-vim.opt.expandtab = true                    -- insert tabs as spaces
-vim.opt.autoindent = true
-vim.opt.breakindent = true
-
-vim.opt.clipboard = "unnamedplus"           -- use system clipboard
-
-vim.opt.ignorecase = true                   -- ignore case in searches
-vim.opt.smartcase = true                    -- unless capital query
-
-vim.opt.showmatch = true                    -- highlight matching brackets
-
-vim.opt.path:append("**")                   -- enable fuzzy :find ing
-vim.opt.guicursor = ""                      -- fixes alacritty changing cursor
-vim.opt.signcolumn= "number"
-
-vim.opt.completeopt = "menu,longest"
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-
-vim.opt.virtualedit = "onemore"
-vim.opt.backspace = "indent,eol,start"
-vim.opt.laststatus = 1
-vim.opt.path = ".,**"
-vim.opt.wildmenu = true
-vim.opt.incsearch = true
-vim.opt.hlsearch = true
-
-vim.opt.mouse = "a"
-
--- better backups (~/.local/share/nvim/undo)
-vim.opt.swapfile = false                    -- disable swapfiles
-vim.opt.backup = false                      -- and auto backps, to instead use
-vim.opt.undofile = true                     -- enable auto save of undos
-
-vim.opt.updatetime = 250                    -- decrease update time
-
-vim.opt.hidden = true                       -- dont save when switching buffers
-vim.opt.inccommand = "nosplit"              -- incremental live completion
-vim.opt.pastetoggle = "<F2>"
-
-vim.opt.nrformats:append("alpha")       -- let <Ctrl-a> do letters as well
-----------------------------------------
--- maps
+-- mappings
 ----------------------------------------
 -- local func to set keybinds
 local remap = function(type, key, value)
     vim.api.nvim_set_keymap(type,key,value,{noremap = true, silent = true});
 end
-remap("n","gr", "gT")
+remap("i", "wq", "<esc>l")
+remap("i", "{<CR>", "{<CR>}<Esc>O")
+remap("n", "<C-L>", "<Cmd>nohlsearch<Bar>diffupdate<CR><C-L>")
+remap("n", "N", "Nzz")
+remap("n", "Y", "y$")
 remap("n","[<space>", ":<c-u>put!=repeat([''],v:count)<bar>']+1<cr>")
 remap("n","]<space>", ":<c-u>put =repeat([''],v:count)<bar>'[-1<cr><Esc>")
+remap("n","gr", "gT")
 remap("n","n", "nzz")
-remap("n", "N", "Nzz")
-remap("i", "wq", "<esc>l")
-remap("v", "wq", "<esc>l")
-remap("i", "{<CR>", "{<CR>}<Esc>O")
-remap("n", "Y", "y$")
 remap("t", "wq", "<C-\\><C-n>")
+remap("v", "wq", "<esc>l")
+remap("n", "<leader>b", ":Buffers<CR>")
+remap("n", "<leader>f", ":Files<CR>")
+remap("n", "<leader>l", ":Lines<CR>")
 
--- git
-remap("n", "<leader>gs", ":Git status<CR>")
+vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+        vim.highlight.on_yank({ higroup = "Visual" })
+    end,
+    group = vim.api.nvim_create_augroup("YankHighlight", {}),
+})
 
--- neovim defaults that rock
-remap("n", "<C-L>", "<Cmd>nohlsearch<Bar>diffupdate<CR><C-L>")
-
-----------------------------------------
+local toggle_rel_num = vim.api.nvim_create_augroup("ToggleRelNum", {})
+vim.api.nvim_create_autocmd("InsertEnter", {
+    command = "set norelativenumber",
+    group = toggle_rel_num,
+})
+vim.api.nvim_create_autocmd("InsertLeave", {
+    command = "set relativenumber",
+    group = toggle_rel_num,
+})
 -- treesitter
 ----------------------------------------
 require"nvim-treesitter.configs".setup {
@@ -145,5 +137,42 @@ require"nvim-treesitter.configs".setup {
     },
     indent = {
         enable = true,
-    }
+    },
+    textobjects = {
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                ['ac'] = '@comment.outer',
+                ['ic'] = '@comment.inner',
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["aa"] = "@call.inner",
+            },
+        },
+    },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = '<CR>',
+            scope_incremental = '<CR>',
+            node_incremental = '<TAB>',
+            node_decremental = '<S-TAB>',
+        },
+    },
+}
+
+-- leap
+----------------------------------------
+local leap = require('leap')
+leap.set_default_keymaps()
+leap.init_highlight(true)
+vim.cmd([[ hi LeapLabelPrimary ctermbg=251 ctermfg=0 ]])
+
+-- toggleterm
+----------------------------------------
+require("toggleterm").setup{
+    open_mapping = [[<leader>t]],
+    shade_terminals = true,
+    size = vim.o.lines * 0.4
 }

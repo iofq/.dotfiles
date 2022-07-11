@@ -21,7 +21,7 @@ xss-lock xtrlock &
 
 while true; do
   xset r rate 300 60
-  autorandr --change
+  autorandr -c
   feh --bg-scale /home/pape
   picom --vsync --experimental-backends -GCb --config /dev/null &
   killall sxhkd; sxhkd &

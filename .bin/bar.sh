@@ -75,7 +75,7 @@ update_30() {
 
 update_300() {
     while :; do
-        curl -s wttr.in/?format=%t | head -c 7 > /tmp/.wttr
+        curl -s wttr.in/madison?format=%t | head -c 7 > /tmp/.wttr
         sleep 300
     done
 }
