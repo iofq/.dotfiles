@@ -20,14 +20,13 @@ RUN groupadd -g 1000 e && useradd -u 1000 -g e -s /bin/bash -m e && \
 USER e
 WORKDIR /home/e
 
-RUN cd && git clone https://github.com/iofq/.dotfiles && \ 
+RUN cd && git clone https://github.com/iofq/.dotfiles && \
   cd .dotfiles && \
   ./install -f && \
   ssh-keygen -f ~/.ssh/id_rsa -N "" >/dev/null
 
 # Run PackerInstall & TSUpdate
-RUN nvim --headless -c 'qall' && \
-    nvim --headless -c 'autocmd User PackerComplete quitall' \
-        -c 'PackerSync'
+RUN nvim --headless -c 'autocmd User PackerComplete quitall'
+RUN nvim --headless -c ':TSInstallSync all | qall'
 
 ENTRYPOINT ["tmux"]
