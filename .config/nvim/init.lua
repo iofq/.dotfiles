@@ -6,34 +6,43 @@ vim.env.FZF_DEFAULT_COMMAND = 'find .'
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.api.nvim_command 'packadd packer.nvim'
 end
+
+-- don't throw error on first packer use
+local ok, packer = pcall(require, "packer")
+if not ok then return end
 
 require("packer").startup(function()
     use "wbthomason/packer.nvim"        -- packer manages itself
 
     use "tpope/vim-commentary"          -- gcc Vgc
     use "tpope/vim-surround"            -- cs\""
-    use "ggandor/leap.nvim"
+    use "ggandor/leap.nvim"             -- s\w\w
     use "akinsho/toggleterm.nvim"
-    use {
-        "junegunn/fzf",                 -- fzf
-    }
+    use "junegunn/fzf"                  -- fzf
     use "junegunn/fzf.vim"              -- fzf vim integration
     use "wellle/targets.vim"            -- ci) cin( cin' di. dia dib
     use "lukas-reineke/indent-blankline.nvim" -- show tabs
-    use "fatih/vim-go"
-    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-    use "nvim-treesitter/nvim-treesitter-textobjects"
+    use { "fatih/vim-go", ft='go' }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            require('nvim-treesitter.install').update({ with_sync = true })
+        end,
+    }
+    use {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        after='nvim-treesitter'
+    }
     if packer_bootstrap then
         require('packer').sync()
     end
 end)
-
 if packer_bootstrap then
     return
 end
-
 -- vim settings
 ----------------------------------------
 vim.opt.autoindent = true
@@ -64,7 +73,7 @@ vim.opt.shiftwidth = 0                      -- >> shifts by tabstop
 vim.opt.showmatch = true                    -- highlight matching brackets
 vim.opt.signcolumn= "number"
 vim.opt.smartcase = true                    -- unless capital query
-vim.opt.smartindent = true                  -- indent according to lang 
+vim.opt.smartindent = true                  -- indent according to lang
 vim.opt.softtabstop = -1                     -- backspace removes tabstop
 vim.opt.splitbelow = true
 vim.opt.splitright = true

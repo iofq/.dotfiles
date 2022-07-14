@@ -25,10 +25,9 @@ RUN cd && git clone https://github.com/iofq/.dotfiles && \
   ./install -f && \
   ssh-keygen -f ~/.ssh/id_rsa -N "" >/dev/null
 
-RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
 # Run PackerInstall & TSUpdate
-RUN nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+RUN nvim --headless -c 'qall' && \
+    nvim --headless -c 'autocmd User PackerComplete quitall' \
+        -c 'PackerSync'
 
 ENTRYPOINT ["tmux"]
