@@ -1,13 +1,14 @@
 -- env
 vim.env.FZF_DEFAULT_COMMAND = 'find .'
 
--- install packer
+-- bootstrap packer
 ----------------------------------------
-local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    vim.fn.execute("!git clone --depth 1 https://github.com/wbthomason/packer.nvim " .. install_path)
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
-local use = require("packer").use
+
 require("packer").startup(function()
     use "wbthomason/packer.nvim"        -- packer manages itself
 
@@ -29,15 +30,18 @@ require("packer").startup(function()
     end
 end)
 
+if packer_bootstrap then
+    return
+end
 
--- settings
+-- vim settings
 ----------------------------------------
 vim.opt.autoindent = true
 vim.opt.backspace = "indent,eol,start"
 vim.opt.backup = false                      -- and auto backps, to instead use
 vim.opt.breakindent = true
 vim.opt.clipboard = "unnamedplus"           -- use system clipboard
-vim.opt.completeopt = "menu,longest"
+vim.opt.completeopt = "menuone"
 vim.opt.cursorline = true
 vim.opt.expandtab = true                    -- insert tabs as spaces
 vim.opt.guicursor = ""                      -- fixes alacritty changing cursor
@@ -77,12 +81,6 @@ vim.g.netrw_liststyle = 3                   -- tree view
 vim.g.fzf_layout = { window = { width = 0.9, height = 0.6 } }
 vim.g.indent_blankline_use_treesitter = true
 
-local undopath = "~/.local/share/nvim/undo"
-vim.api.nvim_create_autocmd("VimEnter", {
-    command = "silent !mkdir -p " .. undopath,
-    pattern = "init.lua",
-    group = vim.api.nvim_create_augroup("Init", {}),
-})
 
 -- mappings
 ----------------------------------------
@@ -104,12 +102,15 @@ remap("v", "wq", "<esc>l")
 remap("n", "<leader>b", ":Buffers<CR>")
 remap("n", "<leader>f", ":Files<CR>")
 remap("n", "<leader>l", ":Lines<CR>")
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        vim.highlight.on_yank({ higroup = "Visual" })
-    end,
-    group = vim.api.nvim_create_augroup("YankHighlight", {}),
+-- autocmd
+----------------------------------------
+local undopath = "~/.local/share/nvim/undo"
+vim.api.nvim_create_autocmd("VimEnter", {
+    command = "silent !mkdir -p " .. undopath,
+    group = vim.api.nvim_create_augroup("Init", {}),
 })
 
 local toggle_rel_num = vim.api.nvim_create_augroup("ToggleRelNum", {})
@@ -121,58 +122,13 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     command = "set relativenumber",
     group = toggle_rel_num,
 })
--- treesitter
-----------------------------------------
-require"nvim-treesitter.configs".setup {
-    ensure_installed = {
-        "go",
-        "python",
-        "yaml",
-        "lua",
-        "c",
-        "bash",
-    },
-    highlight = {
-        enable = true,
-    },
-    indent = {
-        enable = true,
-    },
-    textobjects = {
-        select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-                ['ac'] = '@comment.outer',
-                ['ic'] = '@comment.inner',
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["aa"] = "@call.inner",
-            },
-        },
-    },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = '<CR>',
-            scope_incremental = '<CR>',
-            node_incremental = '<TAB>',
-            node_decremental = '<S-TAB>',
-        },
-    },
-}
+vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+        vim.highlight.on_yank({ higroup = "Visual" })
+    end,
+    group = vim.api.nvim_create_augroup("YankHighlight", {}),
+})
 
--- leap
+-- include
 ----------------------------------------
-local leap = require('leap')
-leap.set_default_keymaps()
-leap.init_highlight(true)
-vim.cmd([[ hi LeapLabelPrimary ctermbg=251 ctermfg=0 ]])
-
--- toggleterm
-----------------------------------------
-require("toggleterm").setup{
-    open_mapping = [[<leader>t]],
-    shade_terminals = true,
-    size = vim.o.lines * 0.4
-}
+require('plugins')

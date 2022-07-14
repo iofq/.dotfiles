@@ -36,6 +36,7 @@ bind '"\C-j": next-history'
 
 # aliases
 alias la='/bin/ls -lahrt --color=auto'
+alias tmux='tmux new -As0'
 alias ll='la'
 alias :q="exit"
 alias vim="${EDITOR}"

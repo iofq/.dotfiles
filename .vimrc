@@ -1,4 +1,3 @@
-let mapleader=" "
 let g:netrw_banner=0
 let g:netrw_liststyle=3
 
@@ -13,10 +12,9 @@ nnoremap n nzz
 nnoremap N Nzz
 
 autocmd FileType yaml,dockerfile setlocal ts=2 sts=2 sw=2
-autocmd FileType text setlocal spell spelllang=en_us spellcapcheck= " [s and ]s, z=
 
 filetype plugin indent on
-set completeopt=menu,longest
+set completeopt=menu
 set number cursorline
 set syntax=on showmatch
 set splitbelow splitright
