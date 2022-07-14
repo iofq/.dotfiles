@@ -1,19 +1,6 @@
-local err, _ = pcall(require, 
-
-local p_require = function(module)
-    ok, res = pcall(require, module)
-    if not ok then
-        return false
-    end
-    return res
-end
-
-local remap = function(type, key, value)
-    vim.api.nvim_set_keymap(type,key,value,{noremap = true, silent = true});
-end
 -- treesitter
 ----------------------------------------
-p_require("nvim-treesitter.configs").setup {
+require("nvim-treesitter.configs").setup {
     ensure_installed = {
         "bash",
         "c",
