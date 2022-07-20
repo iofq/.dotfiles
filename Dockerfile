@@ -5,11 +5,13 @@ RUN apt update && \
     bash \
     bash-completion \
     curl \
+    fzf \
     git \
+    jq \
     openssh-client \
     sudo \
     tmux \
-    fzf
+    yamllint
 # Install nightly neovim
 RUN curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.deb && dpkg -i nvim-linux64.deb
 
