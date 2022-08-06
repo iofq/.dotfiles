@@ -11,8 +11,7 @@ require("nvim-treesitter.configs").setup {
         "lua",
         "php",
         "python",
-        "yaml",
-    },
+        "yaml", },
     highlight = {
         enable = true,
     },
@@ -76,4 +75,13 @@ require("toggleterm").setup{
     open_mapping = [[<leader>t]],
     shade_terminals = true,
     size = vim.o.lines * 0.4
+}
+
+-- blankline
+----------------------------------------
+vim.cmd([[ hi IndentBlanklineChar ctermfg=240 ]])
+vim.cmd([[ hi IndentBlanklineContextChar ctermfg=7 ]])
+require("indent_blankline").setup {
+    show_current_context = true,
+    show_current_context_start = true,
 }

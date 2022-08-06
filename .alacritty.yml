@@ -22,25 +22,25 @@ draw_bold_text_with_bright_colors: true
 window.opacity: 1
 colors:
   primary:
-    background:	'#000000'
+    background:	'#090410'
     foreground:	'#bababd'
   normal:
-    black:	'#000000'
+    black:	'#090410'
     red:	'#b02f30'
-    green:	'#00853e'
+    green:	'#037538'
     yellow:	'#c59820'
-    blue:	'#3971ed'
+    blue:	'#2e528c'
     magenta:	'#764783'
-    cyan:	'#237986'
+    cyan:	'#277c8a'
     white:	'#bababd'
   bright:
     black:	'#95A5A6'
     red:	'#b02f30'
     green:	'#00853e'
     yellow:	'#c59820'
-    blue:	'#3971ed'
+    blue:	'#2e528c'
     magenta:	'#764783'
-    cyan:	'#237986'
+    cyan:	'#277c8a'
     white:	'#ECF0F1'
   vi_mode_cursor:
     text: CellBackground

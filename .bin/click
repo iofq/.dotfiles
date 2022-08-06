@@ -21,14 +21,15 @@ if (( $(pgrep -a click | wc -l) <= 2)); then
             xdotool key F2 && \
             xdotool click --repeat 1 --delay $((d / 2)) 1 && \
             trigger_last
-            s=$((d + 200 / 2))
+            s=$((d + 300 / 2))
             echo "sleep: "$s"ms"
             sleep "${s}e-3"
             echo "F2"
             xdotool key F2 && \
             count=1
         fi
-        if ! (( d % 100 )); then s=$((RANDOM / 1500))
+        if ! (( d % 100 )); then 
+            s=$((RANDOM / 1500))
             echo "sleep: ${s}"
             sleep $s
         fi
@@ -40,7 +41,7 @@ if (( $(pgrep -a click | wc -l) <= 2)); then
             count=$((count+1))
             trigger_last
         fi
-        if ! (( d % 50 )); then
+        if ! (( d % 75 )); then
             x=9.6
             echo "sleep:"$x
             sleep $x

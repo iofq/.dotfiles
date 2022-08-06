@@ -46,6 +46,7 @@ end
 -- vim settings
 ----------------------------------------
 vim.opt.autoindent = true
+vim.opt.background = "light"
 vim.opt.backspace = "indent,eol,start"
 vim.opt.backup = false                      -- and auto backps, to instead use
 vim.opt.breakindent = true
