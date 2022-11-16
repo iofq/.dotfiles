@@ -9,16 +9,17 @@ trigger_last () {
 
 #KNIGHT
 if (( $(pgrep -a click | wc -l) <= 2)); then
-    r=$[ $RANDOM % 56 + 1238 ]
-    count=1
+    r=$[ $RANDOM % 56 + 1234 ]
+    count=0
     for i in $(seq 1 $r); do
-        d=$[ $RANDOM % 466 + 811 ]
+        d=$[ $RANDOM % 466 + 999 ]
         # echo $i $d
-        if [ $count -gt 20 ]; then
+        if [ $count -gt 28 ]; then
             echo "F2"
             echo "sleep: "$d"ms"
             sleep "${d}e-3"
             xdotool key F2 && \
+            sleep "${s}e-3"
             xdotool click --repeat 1 --delay $((d / 2)) 1 && \
             trigger_last
             s=$((d + 300 / 2))
@@ -26,23 +27,27 @@ if (( $(pgrep -a click | wc -l) <= 2)); then
             sleep "${s}e-3"
             echo "F2"
             xdotool key F2 && \
+            sleep "0.12"
             count=1
         fi
-        if ! (( d % 100 )); then 
+        if ! (( d % 9 )); then
+            d=$[ $RANDOM % 966 + 1899 ]
+        fi
+        if ! (( d % 10 )); then
+            d=$((d * 2))
+            count=$((count+1))
+        fi
+        if ! (( d % 150 )); then 
             s=$((RANDOM / 1500))
             echo "sleep: ${s}"
             sleep $s
         fi
-        if ! (( d % 6 )); then
-            d=$((d / 2))
-        fi
-        if ! (( d % 8 )); then
+        if ! (( d % 11 )); then
             xdotool click --repeat 1 --delay $(( d * 10 / count )) 1
-            count=$((count+1))
             trigger_last
         fi
-        if ! (( d % 75 )); then
-            x=9.6
+        if ! (( d % 100 )); then
+            x=4
             echo "sleep:"$x
             sleep $x
         fi
